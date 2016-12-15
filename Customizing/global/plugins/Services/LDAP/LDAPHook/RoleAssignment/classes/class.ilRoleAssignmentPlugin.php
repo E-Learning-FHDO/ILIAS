@@ -143,6 +143,8 @@ class ilRoleAssignmentPlugin extends ilLDAPPlugin implements ilLDAPRoleAssignmen
 							200 => array('FB2'),
 							300 => array('FB3'),
 							400 => array('FB4'),
+							401 => array('84.000.278.FB4'),
+                            402 => array('90.000.278.FB4'),
 							500 => array('FB5'),
 							600 => array('FB6','V6'),
 							800 => array('FB8'),
@@ -185,8 +187,13 @@ class ilRoleAssignmentPlugin extends ilLDAPPlugin implements ilLDAPRoleAssignmen
 			if($studiengang == false)
 				return false;
 			
-			if(in_array($studiengang['fb'],$mapping[$a_plugin_id]))
-				return true;
+			if(is_array($mapping[$a_plugin_id])) {
+				if(in_array($studiengang['fb'],$mapping[$a_plugin_id]))
+					return true;
+					
+				if(in_array($studiengang['qualification'].'.'.$studiengang['focus'].'.'.$studiengang['course'].'.'.$studiengang['fb'],$mapping[$a_plugin_id]))
+					return true;
+			}
 					
 		} else {
 		
@@ -197,8 +204,14 @@ class ilRoleAssignmentPlugin extends ilLDAPPlugin implements ilLDAPRoleAssignmen
 				if($studiengang == false)
 					return false;
 				
-				if(in_array($studiengang['fb'],$mapping[$a_plugin_id]))
-					return true;
+				if(is_array($mapping[$a_plugin_id])) {
+					if(in_array($studiengang['fb'],$mapping[$a_plugin_id]))
+						return true;
+				
+					if(in_array($studiengang['qualification'].'.'.$studiengang['focus'].'.'.$studiengang['course'].'.'.$studiengang['fb'],$mapping[$a_plugin_id]))
+						return true;
+					
+				}
 					
 				$GLOBALS['ilLog']->write(__METHOD__.': New User FB:'.$studiengang['fb']);
 				
