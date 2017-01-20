@@ -10770,7 +10770,7 @@ div.ilStartupFrame div.ilc_section_Mnemonic {
 .ilToolbar ul.dropdown-menu > li {
   border: none;
 }
-@media only screen and (max-width: 767px) {
+@media (min-width: 768px) {
   .ilToolbar .container-fluid {
     padding-left: 0;
   }
