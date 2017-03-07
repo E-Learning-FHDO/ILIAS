@@ -148,10 +148,11 @@ class ilRoleAssignmentPlugin extends ilLDAPPlugin implements ilLDAPRoleAssignmen
 							500 => array('FB5'),
 							600 => array('FB6','V6'),
 							800 => array('FB8'),
-							900 => array('FB9')
+							900 => array('FB9'),
+							950 => array('FB10')
 						);
 		// DEBUG
-		//$a_user_data['description'] = array('Mitarbeiter@.FB2.fh-dortmund.de');
+		//$a_user_data['edupersonscopedaffiliation'] = array('Mitarbeiter@FB10.fh-dortmund.de');
 
 		
 		/****************************
