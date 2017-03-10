@@ -118,3 +118,6 @@ common#:#objs_xflc#:#Flashcard Trainings
 common#:#filename_special_characters#:#&nbsp;
 common#:#txt_registered#:#You habe successfully created your ILIAS User account.
 common#:#rep_robj_xlvo_fold_create_xlvo#:#Create Adobe Connect
+common#:#rep_robj_xflc_rbac_create_xflc#:#Create Flashcards
+common#:#rep_robj_xlvo_rbac_create_xlvo#:#Create Live Voting
+common#:#rep_robj_xavc_rbac_create_xavc#:#Create Adobe Connect

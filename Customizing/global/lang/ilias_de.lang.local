@@ -134,3 +134,6 @@ common#:#objs_xflc#:#Lernkarten-Trainings
 common#:#filename_special_characters#:#&nbsp;
 common#:#txt_registered#:#Sie haben sich erfolgreich bei ILIAS registriert.
 common#:#rep_robj_xlvo_fold_create_xlvo#:#Adobe Connect anlegen
+common#:#rep_robj_xflc_rbac_create_xflc#:#Lernkarten anlegen
+common#:#rep_robj_xlvo_rbac_create_xlvo#:#Live Voting anlegen
+common#:#rep_robj_xavc_rbac_create_xavc#:#Adobe Connect anlegen
