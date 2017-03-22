@@ -229,7 +229,14 @@ class ilObjMuvin extends ilObjectPlugin
 			$muvinDocID = $rec["muvin_id"];
 		}
 				
-		if($this->documentService->DeleteDocument($muvinDocID))
+		$ilDB->manipulate("DELETE FROM rep_robj_xmvn_data WHERE ".
+				" id = ".$ilDB->quote($this->getId(), "integer")
+				);
+        
+        @$this->documentService->DeleteDocument($muvinDocID);
+        
+        /*
+        if($this->documentService->DeleteDocument($muvinDocID))
 		{		
 			$ilDB->manipulate("DELETE FROM rep_robj_xmvn_data WHERE ".
 				" id = ".$ilDB->quote($this->getId(), "integer")
@@ -239,7 +246,7 @@ class ilObjMuvin extends ilObjectPlugin
 		{
 			return false;
 		}
-		
+		*/
 		
 	}
 	
