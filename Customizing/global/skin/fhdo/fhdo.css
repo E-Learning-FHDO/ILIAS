@@ -11549,6 +11549,11 @@ a.hideHeaderIcon,
   pointer-events: none;
   cursor: default;
 }
+/* disable tree view // FHDO */
+a.ilTreeView,
+.ilLeftNav {
+  display: none;
+}
 /* basic responsiveness (beta)
 
    The following section targets smartphones.
