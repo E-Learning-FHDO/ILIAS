@@ -11550,8 +11550,7 @@ a.hideHeaderIcon,
   cursor: default;
 }
 /* disable tree view // FHDO */
-a.ilTreeView,
-.ilLeftNav {
+a.ilTreeView {
   display: none;
 }
 /* basic responsiveness (beta)
