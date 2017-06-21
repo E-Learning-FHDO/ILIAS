@@ -492,7 +492,7 @@ class ilUserAutoComplete
 		
 		if(self::SEARCH_TYPE_LIKE == $this->getSearchType())
 		{
-			return $ilDB->like($field, 'text', $a_str . '%');
+			return $ilDB->like($field, 'text', '%'. $a_str . '%');
 		}
 		else
 		{
