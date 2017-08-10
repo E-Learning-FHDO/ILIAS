@@ -143,8 +143,8 @@ class ilRoleAssignmentPlugin extends ilLDAPPlugin implements ilLDAPRoleAssignmen
 							200 => array('FB2'),
 							300 => array('FB3'),
 							400 => array('FB4'),
-							401 => array('84.000.278.FB4'),
-                            402 => array('90.000.278.FB4'),
+							401 => array('84.000.278.FB4','84.000.VWI.THK'),
+                            402 => array('90.000.278.FB4','90.000.VWI.THK'),
 							500 => array('FB5'),
 							600 => array('FB6','V6'),
 							800 => array('FB8'),
@@ -255,6 +255,7 @@ class ilRoleAssignmentPlugin extends ilLDAPPlugin implements ilLDAPRoleAssignmen
 				break;
 				
 			case 'Student':
+			case 'verbundstudent-wi':
 				$data = array('qualification' => $attr[0],
 						  'focus' => $attr[1],
 						  'course' => $attr[2],
