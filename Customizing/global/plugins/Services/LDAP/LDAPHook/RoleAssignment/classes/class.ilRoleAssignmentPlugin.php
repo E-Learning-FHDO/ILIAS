@@ -85,6 +85,7 @@ class ilRoleAssignmentPlugin extends ilLDAPPlugin implements ilLDAPRoleAssignmen
 							10 => array('Student'),
 							20 => array('Mitarbeiter'),
 							30 => array('Affiliate'),
+							40 => array('verbundstudent-wi'),
 							100 => array('FB1'),
 							200 => array('FB2'),
 							300 => array('FB3'),
