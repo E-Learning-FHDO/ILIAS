@@ -77,80 +77,31 @@ class ilRoleAssignmentPlugin extends ilLDAPPlugin implements ilLDAPRoleAssignmen
 			8 - Soz
 			9 - Wirt
 			*/
-			
-			
-		/* old
-		   100 => array('FB1'),
-							101 => array('FB1-013-84','FB1-249-51'),
-							102 => array('FB1-242-90'),
-							200 => array('FB2'),
-							201 => array('FB2-054-84','FB2-917-84'),
-							202 => array('FB2-054-90','FB2-917-90'),
-							203 => array('FB2-231-84','FB2-447-84', 'FB2-E71-84'),
-							204 => array('FB2-450-84'),
-							205 => array('FB2-670-84','FB2-670-51'),
-							208 => array('FB2-C98-84'),
-							209 => array('FB2-C99-90'),
-							211 => array('FB2-E71-90'),
-							300 => array('FB3'),
-							301 => array('FB3-048-84','FB3-473-84','FB3-658-84'),
-							302 => array('FB3-212-84'),
-							303 => array('FB3-234-84'),
-							304 => array('FB3-550-90'),
-							305 => array('FB3-588-90'),
-							306 => array('FB3-702-84','FB3-781-84'),
-							307 => array('FB3-E84-84'),
-							308 => array('FB3-G08-84','FB3-G09-84'),
-							400 => array('FB4'),
-							401 => array('FB4-079-84'),
-							402 => array('FB4-079-90'),
-							403 => array('FB4-118-84','FB4-721-84'),
-							404 => array('FB4-721-90'),
-							405 => array('FB4-456-84','FB4-555-84'),
-							406 => array('FB4-555-90'),
-							407 => array('FB4-573-84'),
-							408 => array('FB4-278-84'),
-							409 => array('FB4-278-90'),
-							410 => array('FB4-408-84'),
-							411	=> array('FB4-D30-84'),
-							500 => array('FB5'),
-							501 => array('FB5-104-84','FB5-970-84'),
-							502 => array('FB5-104-90'),
-							503 => array('FB5-645-84','FB5-E58-84'),
-							505 => array('FB5-B94-90'),
-							507 => array('FB5-E78-90'),
-							800 => array('FB8'),
-							801 => array('FB8-260-51','FB-C40-84'),
-							802 => array('FB8-F17-90'),
-							900 => array('FB9'),
-							901 => array('FB9-285-84','FB9-021-84','FB9-21-84'),
-							902 => array('FB9-A20-84'),
-							903 => array('FB9-B63-84'),
-							904 => array('FB9-C24-90','FB9-F25-90'),
-							905 => array('FB9-E83-90'),
-							906 => array('FB9-E85-90'),
-							907 => array('FB9-C97-90'),
-							908 => array('FB9-E86-84'),
-							909 => array('FB9-F06-84')
-							
-							*/	
 							
 																		
 							
 		// Mapping Plugin-ID -> Keys aus LDAP
 		$mapping = array(
+							10 => array('Student'),
+							20 => array('Mitarbeiter'),
+							30 => array('Affiliate'),
 							100 => array('FB1'),
 							200 => array('FB2'),
 							300 => array('FB3'),
 							400 => array('FB4'),
-							401 => array('84.000.278.FB4','84.000.VWI.THK'),
-                            402 => array('90.000.278.FB4','90.000.VWI.THK'),
+							401 => array('84.000.278.FB4','84.000.VWI.THK','AF.THK'),
+                            402 => array('90.000.278.FB4','90.000.VWI.THK','AF.THK'),
 							500 => array('FB5'),
 							600 => array('FB6','V6'),
 							800 => array('FB8'),
 							900 => array('FB9'),
 							950 => array('FB10')
 						);
+						
+		
+						
+		
+		
 		// DEBUG
 		//$a_user_data['edupersonscopedaffiliation'] = array('Mitarbeiter@FB10.fh-dortmund.de');
 
@@ -158,9 +109,13 @@ class ilRoleAssignmentPlugin extends ilLDAPPlugin implements ilLDAPRoleAssignmen
 		/****************************
 		 * fake the description field for certain FB
 		 */
+		 
+		 
+		//$GLOBALS['ilLog']->write(__METHOD__.': DUMP-ORIG :'. var_dump($a_user_data['edupersonscopedaffiliation']));
 		  
 		if(!is_array($a_user_data['edupersonscopedaffiliation'])) {
 			$studiengang = $this->_sortUser($a_user_data['edupersonscopedaffiliation'],false);
+			$GLOBALS['ilLog']->write(__METHOD__.': NO-ARRAY:'.$studiengang['status']);
 			
 			// add the fake fields
 			$a_user_data['edupersonscopedaffiliation'] = $this->_addDescFields($studiengang);			
@@ -169,10 +124,13 @@ class ilRoleAssignmentPlugin extends ilLDAPPlugin implements ilLDAPRoleAssignmen
 		{
 			foreach($a_user_data['edupersonscopedaffiliation'] as $key2 => $value2) {
 				$studiengang = $this->_sortUser($value2,$a_user_data['edupersonscopedaffiliation']);
+				$GLOBALS['ilLog']->write(__METHOD__.': ARRAY:'.$studiengang['status']);
 			
 				// add the fake fields
 				$a_user_data['edupersonscopedaffiliation'] = $this->_addDescFields($studiengang);	
 			} // end: foreach($a_user_data['description'] as $key => $value) 
+			
+			//$GLOBALS['ilLog']->write(__METHOD__.': ARRAY-COMPLETE:'.var_dump($a_user_data['edupersonscopedaffiliation']));
 		} // end:  !is_array($a_user_data['description'])
 			
 
@@ -184,6 +142,10 @@ class ilRoleAssignmentPlugin extends ilLDAPPlugin implements ilLDAPRoleAssignmen
 		if(!is_array($a_user_data['edupersonscopedaffiliation'])) {
 	     	$studiengang = $this->_sortUser($a_user_data['edupersonscopedaffiliation'],false);
 	     	
+	     	$GLOBALS['ilLog']->write(__METHOD__.': AFFFOUND-OBEN:'.$studiengang['status']);
+				//print_r($studiengang,true);
+				//echo var_dump($studiengang);
+	     	
 	     	// Wenn kein Studiengang dann nichts zuweisen
 			if($studiengang == false)
 				return false;
@@ -194,22 +156,67 @@ class ilRoleAssignmentPlugin extends ilLDAPPlugin implements ilLDAPRoleAssignmen
 					
 				if(in_array($studiengang['qualification'].'.'.$studiengang['focus'].'.'.$studiengang['course'].'.'.$studiengang['fb'],$mapping[$a_plugin_id]))
 					return true;
+					
+				if($studiengang['status'] == 'Affiliate')
+				{
+					if(in_array('AF.'.$studiengang['fb'],$mapping[$a_plugin_id]))
+						return true;
+						
+						
+					$GLOBALS['ilLog']->write(__METHOD__.': Assigning Affiliate:'.$studiengang['fb']);
+				}
+				
+				// Set Mitarbeiter / Student / Affiliate Rolle
+				if(in_array($studiengang['status'],$mapping[$a_plugin_id]))
+				{
+					return true;
+				}
+										
 			}
+			
+			//print_r($studiengang,true);
 					
 		} else {
-		
+							
 			foreach($a_user_data['edupersonscopedaffiliation'] as $key => $value) {
 				$studiengang = $this->_sortUser($value,$a_user_data['edupersonscopedaffiliation']);
+				
+				
+				$GLOBALS['ilLog']->write(__METHOD__.': AFFFOUND:'.$studiengang['status']);
+				//print_r($studiengang,true);
+				//echo var_dump($studiengang);
 				
 				// Wenn kein Studiengang dann nichts zuweisen
 				if($studiengang == false)
 					return false;
+
+				
+
 				
 				if(is_array($mapping[$a_plugin_id])) {
 					if(in_array($studiengang['fb'],$mapping[$a_plugin_id]))
 						return true;
 				
 					if(in_array($studiengang['qualification'].'.'.$studiengang['focus'].'.'.$studiengang['course'].'.'.$studiengang['fb'],$mapping[$a_plugin_id]))
+						return true;
+					
+					
+					
+					
+					
+						
+					if($studiengang['status'] == 'Affiliate')
+					{
+						if(in_array('AF.'.$studiengang['fb'],$mapping[$a_plugin_id])) {
+							return true;
+							
+						}
+						
+						$GLOBALS['ilLog']->write(__METHOD__.': Assigning Affiliate:'.$studiengang['fb']);
+					}
+					
+					// Set Mitarbeiter / Student / Affiliate Rolle
+					if(in_array($studiengang['status'],$mapping[$a_plugin_id]))
 						return true;
 					
 				}
@@ -226,7 +233,16 @@ class ilRoleAssignmentPlugin extends ilLDAPPlugin implements ilLDAPRoleAssignmen
 	
 	// Split LDAP description string
 	private function _sortUser($description,$orig_description)
-	{
+	{	
+	
+		/* Spezielle Institutionen die bei der die Affiliate anhand der Institution 
+			behandelt wird.
+		*/
+	   
+		$institutions = array(
+			'THK'
+			);
+
 		// split the string
 		$type = explode('@',$description);
 		$attr = explode(".",$type[1]);
@@ -239,15 +255,46 @@ class ilRoleAssignmentPlugin extends ilLDAPPlugin implements ilLDAPRoleAssignmen
 		{
 			$orig_description = $description;
 		}
+
+		
+		// check original for a special institution
+		$special = 0;
+		if(is_array($orig_description))
+		{
+			$GLOBALS['ilLog']->write(__METHOD__.': Run orig: yes');		
+			$orig_type = explode('@',$orig_description[0]);
+			$orig_attr = explode(".",$orig_type[1]);
+			
+			if(in_array($orig_attr[1],$institutions))
+				$special = 1;
+		} else {
+			$GLOBALS['ilLog']->write(__METHOD__.': Run orig: no');		
+		}
 		
 		// build the returned data array
 		switch($type[0]) {		
-			case 'Mitarbeiter':
-			case 'affiliate':
+			case 'Mitarbeiter':	
+			
 				$data = array('fb' => $attr[1],
 							  'status' => 'Mitarbeiter',
 							  'orig' => $orig_description);
+			
 				break;
+				
+			case 'affiliate':
+				//if(in_array($attr[1],$institutions) && $special == 1)
+				//{
+					$data = array('fb' => $attr[1],
+								  'status' => 'Affiliate',
+								  'orig' => $orig_description);
+					
+					//$return = print_r($data,true);
+					$GLOBALS['ilLog']->write(__METHOD__.': AFFILIATE - ');		
+					//print_r($data);								  
+				//} 
+								
+				break;
+				
 			case 'ExMA':			
 				$data = array('fb' => 'ExMA',
 							  'status' => 'Mitarbeiter',
@@ -256,11 +303,13 @@ class ilRoleAssignmentPlugin extends ilLDAPPlugin implements ilLDAPRoleAssignmen
 				
 			case 'Student':
 			case 'verbundstudent-wi':
+			
+				// take type as identifier
 				$data = array('qualification' => $attr[0],
 						  'focus' => $attr[1],
 						  'course' => $attr[2],
 						  'fb' => $attr[3],
-						  'status' => 'Student',
+						  'status' => $type[0],
 						  'orig' => $orig_description);
 				break;
 			case 'ExStud':
@@ -310,6 +359,9 @@ class ilRoleAssignmentPlugin extends ilLDAPPlugin implements ilLDAPRoleAssignmen
 			
 				if($studiengang['status'] == 'Student')
 					$add_description = 'Student@00.000.000.'.$value.'.fh-dortmund.de';
+					
+				//if($studiengang['status'] == 'Affiliate')
+				//	$add_description = 'affiliate@AF.'.$value.'.fh-dortmund.de';
 			
 				array_push($a_user_data['edupersonscopedaffiliation'], $add_description);	
 			} // end: foreach $mappingMulti
