@@ -137,3 +137,30 @@ common#:#rep_robj_xlvo_fold_create_xlvo#:#Adobe Connect anlegen
 common#:#rep_robj_xflc_rbac_create_xflc#:#Lernkarten anlegen
 common#:#rep_robj_xlvo_rbac_create_xlvo#:#Live Voting anlegen
 common#:#rep_robj_xavc_rbac_create_xavc#:#Adobe Connect anlegen
+rbac#:#rbac_create_cld#:#Sciebo-Ordner erstellen
+cld#:#cld_add#:#Sciebo-Ordner erstellen
+cld#:#cld_edit_Settings#:#Sciebo Einstellungen
+cld#:#cld_file_not_existing_on_service#:#Datei existiert in Sciebo nicht:
+cld#:#cld_folder_already_existing_on_service#:#Ordner existiert bereits in Sciebo
+cld#:#cld_folder_not_existing_on_service#:#Ordner existiert nicht in Sciebo
+cld#:#cld_new#:#Neuen Sciebo Ordner hinzufügen
+cld#:#cld_no_service_active#:#Leider ist kein Cloud-Plugin aktiviert
+cld#:#cld_no_service_selected#:#Es wurde kein Cloud-Dienst ausgewählt.
+cld#:#cld_only_owner_has_permission_to_change_root_path#:#Um die Privatsphäre des Besitzers des Sciebo-Ordners zu schützen, kann nur der Ersteller eines Sciebo-Objektes dessen Basisverzeichnis ändern.
+cld#:#cld_service_not_active#:#Der gewählte Cloud-Dienst ist nicht aktiv
+common#:#obj_cld#:#Sciebo-Ordner
+common#:#objs_cld#:#sciebo-Ordner
+rbac#:#cld_delete_files#:#Benutzer können Dateien im Sciebo-Ordner löschen
+rbac#:#cld_delete_folders#:#Benutzer können Ordner im Sciebo-Ordner löschen
+rbac#:#cld_files_visible#:#Dateien im Sciebo-Ordner sind für die Benutzer sichtbar
+rbac#:#cld_folders_visible#:#Ordner im Sciebo-Ordner sind für die Benutzer sichtbar
+rbac#:#cld_folders_create#:#Ordner können im Sciebo-Ordner erstellt werden
+rbac#:#cld_visible#:#Sciebo-Ordner sichtbar
+rbac#:#cld_read#:#Benutzer können Sciebo-Ordner öffnen
+rbac#:#cld_write#:#Benutzer können Sciebo-Ordner Einstellungen bearbeiten
+rbac#:#cld_delete#:#Benutzer können Sciebo-Ordner löschen
+rbac#:#cld_permission#:#Benutzer können Rechteeinstellungen bearbeiten
+rbac#:#cld_upload#:#Benutzer können Dateien in den Sciebo-Ordner laden
+rbac#:#cld_download#:#Benutzer können Dateien vom Sciebo-Ordner herunterladen
+cld#:#cld_object_added#:#Ein neuen Sciebo Ordner wurde hinzugefügt
+cld#:#cld_auth_failed_no_object_created#:#Authentifzierung fehlgeschlagen. Es wurde kein Sciebo-Ordner angelegt.

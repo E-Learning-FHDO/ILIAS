@@ -121,3 +121,30 @@ common#:#rep_robj_xlvo_fold_create_xlvo#:#Create Adobe Connect
 common#:#rep_robj_xflc_rbac_create_xflc#:#Create Flashcards
 common#:#rep_robj_xlvo_rbac_create_xlvo#:#Create Live Voting
 common#:#rep_robj_xavc_rbac_create_xavc#:#Create Adobe Connect
+rbac#:#rbac_create_cld#:#Create Sciebo-Folder
+cld#:#cld_add#:#Create Sciebo-Folder
+cld#:#cld_edit_Settings#:#Sciebo Configuration
+cld#:#cld_file_not_existing_on_service#:#The file does not exist in Sciebo:
+cld#:#cld_folder_already_existing_on_service#:#The folder already exists in Sciebo
+cld#:#cld_folder_not_existing_on_service#:#The folder does not exist in Sciebo
+cld#:#cld_new#:#Add new Sciebo folder
+cld#:#cld_no_service_active#:#No cloud plugin has been activated
+cld#:#cld_no_service_selected#:#No cloud service was selected
+cld#:#cld_only_owner_has_permission_to_change_root_path#:#To protect the privacy of the Sciebo folder owner, only the owner is allowed to change the base folder.
+cld#:#cld_service_not_active#:#The selected cloud service is not active
+common#:#obj_cld#:#Sciebo-Folder
+common#:#objs_cld#:#sciebo-Folder
+rbac#:#cld_delete_files#:#Users can delete files in the Sciebo folder
+rbac#:#cld_delete_folders#:#Users can delete folder in the Sciebo folder
+rbac#:#cld_files_visible#:#Files are visible in the Sciebo folder for the users
+rbac#:#cld_folders_visible#:#Folders are visible for users inside of the Sciebo folder
+rbac#:#cld_folders_create#:#Ordner können im Sciebo-Ordner erstellt werden
+rbac#:#cld_visible#:#Sciebo-Folder visible
+rbac#:#cld_read#:#Users can access the Sciebo folder
+rbac#:#cld_write#:#Users can change the settings of the Sciebo folder
+rbac#:#cld_delete#:#Users can delete Sciebo folder
+rbac#:#cld_permission#:#Users can change permissions
+rbac#:#cld_upload#:#Users can upload files to the Sciebo folder
+rbac#:#cld_download#:#Users can download files from the Sciebo folder
+cld#:#cld_object_added#:#A new Sciebo folder has been added
+cld#:#cld_auth_failed_no_object_created#:#Authentification failed. No Sciebo folder was added.
