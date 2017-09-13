@@ -149,7 +149,7 @@ class ilObjMuvin extends ilObjectPlugin
 			$this->fileService = new FileService();
 			$this->permissionService = new PermissionService();
 	
-			$paramsDocCreation['language']        = 'de';
+			$paramsDocCreation['language']        = 'ger';
 			$paramsDocCreation['title']           = $this->getTitle();
 			$paramsDocCreation['title2']          = '';
 			$paramsDocCreation['authorId']        = '320';
@@ -188,6 +188,7 @@ class ilObjMuvin extends ilObjectPlugin
 		}
 		else
 		{
+            $paramsDocCreation['language']        = 'ger';
 			$paramsDocCreation['title']           = $this->getTitle();
 			$paramsDocCreation['title2']          = '';
 			$paramsDocCreation['authorId']        = '320';
