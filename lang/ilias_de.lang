@@ -7772,7 +7772,7 @@ exc#:#exc_deadline#:#Abgabetermin
 exc#:#exc_direct_submit_blog#:#Möchten Sie die aktuelle Version Ihres Blogs jetzt abgeben? Sie können dies auch jederzeit im Blog-Editor tun.
 exc#:#exc_direct_submit_portfolio#:#Möchten Sie die aktuelle Version Ihres Portfolios jetzt abgeben? Sie können dies auch jederzeit im Portfolio-Editor tun.
 exc#:#exc_edit_assignment#:#Einstellungen der Übungseinheit
-exc#:#exc_edit_assignments#:#Übungseinheiten bearbeitn
+exc#:#exc_edit_assignments#:#Übungseinheiten bearbeiten
 exc#:#exc_edit_submission#:#Eingereichte Lösungen ändern
 exc#:#exc_ended_on#:#Beendet am
 exc#:#exc_export_excel#:#Export (Excel)
@@ -9911,7 +9911,7 @@ prtf#:#prtf_exercise_submitted_info#:#Ihre letzte Einreichung war am %s. Bitte p
 prtf#:#prtf_existing_portfolio#:#Vorhandenes Portfolio
 prtf#:#prtf_finalize_portfolio#:#Portfolio abschließen und abgeben
 prtf#:#prtf_finalized#:#Das Portfolio wurde abgegeben.
-prtf#:#prtf_first_page_title#:#Typ der 1. Seite
+prtf#:#prtf_first_page_title#:#Beginnt mit:
 prtf#:#prtf_font_color#:#Schriftfarbe
 prtf#:#prtf_new_portfolio#:#Neues Portfolio
 prtf#:#prtf_no_blogs_info#:#Wenn Sie im Bereich "%s" einen Blog anlegen, können Sie dieses auch als Teil Ihres Portfolios verwenden.
@@ -11805,7 +11805,7 @@ survey#:#warning_question_in_use#:#Warnung! Die Frage, die Sie bearbeiten wollen
 survey#:#warning_question_not_complete#:#Die Frage ist unvollständig!
 survey#:#workingtime#:#Bearbeitungsdauer
 survey#:#wrong_categories_selected_for_insert#:#ILIAS konnte die geplante Aktion nicht durchführen. Bitte stellen Sie sicher, dass nur genau eine Antwort als Zielposition ausgewählt wurde!
-survey#:#wrong_survey_code_used#:#Sie können diese Umfrage nicht starten, da Sie versucht haben, einen ungültigen Zugangsschlüssel zu verwenden.
+survey#:#wrong_survey_code_used#:#Kein Zugriff auf die Umfrage. Ihr Zugangsschlüssel ist ungültig oder wurde bereits verwendet.
 tagging#:#tagging_all_users#:#Alle Benutzer
 tagging#:#tagging_edit_settings#:#Einstellungen
 tagging#:#tagging_enable_all_users#:#Zeige Tags aller Benutzer
@@ -12624,7 +12624,7 @@ common#:#soap_connect_timeout#:#Timeout für Verbindungsaufbau
 common#:#soap_connect_timeout_info#:#Die maximale Zeit in Sekunden, die gewartet wird, bis eine Verbindung zum SOAP-Web-Service aufgebaut werden kann.
 dateplaner#:#cal_ical_infoscreen#:#Abonnieren
 trac#:#trac_lp_on_personal_desktop#:#Lernfortschritt auf Persönlichem Schreibtisch
-trac#:#trac_lp_learner_access#:#Eigenen Lernfornschritt einsehen
+trac#:#trac_lp_learner_access#:#Eigenen Lernfortschritt einsehen
 rating#:#rating_categories#:#Bewertungs-Kategorien
 rating#:#rating_add_category#:#Kategorie hinzufügen
 rating#:#rating_category_create#:#Kategorie erstellen
@@ -13968,10 +13968,10 @@ prtt#:#prtt_activation_limited_visibility_info#:#Falls aktiv, ist die Portfoliov
 content#:#cont_profile_mode_template_inherit_info#:#Verwendet die Daten des Profils
 prtf#:#prtf_template_editor_placeholder_info#:#Dieser Platzhalter wird im Portfolio ersetzt.
 prtf#:#prtf_creation_mode#:#Neues Portfolio
-prtf#:#prtf_creation_mode_template#:#Aus Vorlage erstellen
-prtf#:#prtf_creation_mode_scratch#:#Ohne Vorlage erstellen
-prtf#:#prtf_template_import_blog_create#:#Neuen Blog erstellen
-prtf#:#prtf_template_import_blog_reuse#:#Bestehenden Blog nutzen
+prtf#:#prtf_creation_mode_template#:#Aus einer Portfoliovorlage erstellen
+prtf#:#prtf_creation_mode_scratch#:#Ohne Portfoliovorlage erstellen
+prtf#:#prtf_template_import_blog_create#:#Neues Blog erstellen
+prtf#:#prtf_template_import_blog_reuse#:#Bestehendes Blog nutzen
 prtf#:#prtf_template_import_blog_ignore#:#Blog-Seite entfernen
 prtf#:#prtf_create_template_from_portfolio#:#Portfolio
 prtf#:#prtf_create_template_from_portfolio_info#:#Wählen Sie ein Portfolio um dessen Inhalte und Einstellungen für die Vorlage zu übernehmen.
