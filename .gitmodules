@@ -10,3 +10,6 @@
 [submodule "Customizing/global/plugins/Modules/Cloud/CloudHook/OwnCloud"]
 	path = Customizing/global/plugins/Modules/Cloud/CloudHook/OwnCloud
 	url = https://github.com/studer-raimann/OwnCloud.git
+[submodule "Customizing/global/plugins/Services/Repository/RepositoryObject/LiveVoting"]
+	path = Customizing/global/plugins/Services/Repository/RepositoryObject/LiveVoting
+	url = https://github.com/studer-raimann/LiveVoting.git
