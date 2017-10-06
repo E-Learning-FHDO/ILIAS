@@ -6562,6 +6562,16 @@ li#nontab_members_view a:focus {
 div.il_ealearning {
   margin: 10px 0 10px 0;
 }
+/* disable anonymous button livevote */
+div#il_prop_cont_anonymous input#anonymouse {
+  pointer-events: none;
+}
+div#il_prop_cont_anonymous label[for=anonymous] {
+  color: #ccc;
+}
+div#il_prop_cont_anonymous div.help-block {
+  color: #ccc;
+}
 /* --------------------------------------------------------------
    GLOBAL STYLES
 -------------------------------------------------------------- */
