@@ -426,11 +426,12 @@ class ilObjMuvinGUI extends ilObjectPluginGUI
 			$testContent = '';
             
 			
-                
-			$allowedFiles = array('flv' => array(
+            // Disabled FLV - 2017.10.06
+        
+			$allowedFiles = array(/*'flv' => array(
 													'extension' => 'flv', 
 													'provider' => 'rtmp'
-												),
+												), */
 								  'mpeg4' => array(
 													'extension' => 'mp4',
 													'provider' => 'http'
@@ -679,7 +680,7 @@ class ilObjMuvinGUI extends ilObjectPluginGUI
     public function editDocumentFiles()
     {
     
-    	global $ilErr;
+    	global $ilErr, $lng;
     	
         //include_once("./Services/Table/classes/class.ilTableGUI.php");
         
@@ -792,13 +793,15 @@ class ilObjMuvinGUI extends ilObjectPluginGUI
 
 			if($countFiles < 1)
 			{
+                
+                ilUtil::sendInfo($this->lng->txt("discontinued_muvin"));
 			
 				$uploadToken = $this->fileService->GetUploadSessionkey($muvinID,$derivateID,$pageURL);
                 
-				$javaObject = '<object height="130" width="380" codebase="http://muvin.uaruhr.de/plugins/download/j2re-1_4_0_01-windows-i586-i.exe" classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"><param value="'.$uploadToken.'" name="uploadId"><param value="./Customizing/global/plugins/Services/Repository/RepositoryObject/Muvin/" name="codebase"><param value="org.mycore.frontend.fileupload.MCRUploadApplet.class" name="code"><param value="Plugin" name="cache_option"><param value="upload.jar" name="cache_archive"><param value="true" name="progressbar"><param value="#ff6600" name="progresscolor"><param value="#CAD9E0" name="background-color"><param value="http://muvin.uaruhr.de/servlets/MCRUploadServlet?method=redirecturl&amp;uploadId='.$uploadToken.'" name="url"><param value="http://muvin.uaruhr.de/servlets/" name="ServletsBase"><param value="true" name="selectMultiple"><param value="flv,mp4" name="acceptFileTypes"> '.
+				$javaObject = '<object height="130" width="380" codebase="http://muvin.uaruhr.de/plugins/download/j2re-1_4_0_01-windows-i586-i.exe" classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"><param value="'.$uploadToken.'" name="uploadId"><param value="./Customizing/global/plugins/Services/Repository/RepositoryObject/Muvin/" name="codebase"><param value="org.mycore.frontend.fileupload.MCRUploadApplet.class" name="code"><param value="Plugin" name="cache_option"><param value="upload.jar" name="cache_archive"><param value="true" name="progressbar"><param value="#ff6600" name="progresscolor"><param value="#CAD9E0" name="background-color"><param value="http://muvin.uaruhr.de/servlets/MCRUploadServlet?method=redirecturl&amp;uploadId='.$uploadToken.'" name="url"><param value="http://muvin.uaruhr.de/servlets/" name="ServletsBase"><param value="true" name="selectMultiple"><param value="mp4" name="acceptFileTypes"> '.
 							  '<noembed>'.$this->txt("no_java").'</noembed>'.
 							  '<comment>'.
-							  '<embed type="application/x-java-applet;version=1.3.1" codebase="./Customizing/global/plugins/Services/Repository/RepositoryObject/Muvin/applet" code="org.mycore.fileupload.MCRUploadApplet.class" archive="upload.jar" cache_option="Plugin" cache_archive="upload.jar" width="380" height="130" pluginspage="http://muvin.uaruhr.de/authoring/einrichten.xml" progressbar="true" progresscolor="#FF6600" uploadId="'.$uploadToken.'" background-color="#CAD9E0" url="http://muvin.uaruhr.de/servlets/MCRUploadServlet?method=redirecturl&amp;uploadId='.$uploadToken.'" ServletsBase="http://muvin.uaruhr.de/servlets/" selectMultiple="true" acceptFileTypes="flv,mp4"> '.
+							  '<embed type="application/x-java-applet;version=1.3.1" codebase="./Customizing/global/plugins/Services/Repository/RepositoryObject/Muvin/applet" code="org.mycore.fileupload.MCRUploadApplet.class" archive="upload.jar" cache_option="Plugin" cache_archive="upload.jar" width="380" height="130" pluginspage="http://muvin.uaruhr.de/authoring/einrichten.xml" progressbar="true" progresscolor="#FF6600" uploadId="'.$uploadToken.'" background-color="#CAD9E0" url="http://muvin.uaruhr.de/servlets/MCRUploadServlet?method=redirecturl&amp;uploadId='.$uploadToken.'" ServletsBase="http://muvin.uaruhr.de/servlets/" selectMultiple="true" acceptFileTypes="mp4"> '.
 							  '<noembed>'.$this->txt("no_java").'</noembed> '.
 							  '</embed>'.
 							  '</comment> '.
