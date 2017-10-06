@@ -365,7 +365,7 @@ class ilObjMuvinGUI extends ilObjectPluginGUI
 		    }
 			//$resultXML = xml2array($data);
 			
-			$path = array_reverse($this->getkeypath($resultXML,'document'));
+			//$path = array_reverse($this->getkeypath($resultXML,'document'));
 			
 			$videoInfo = array();
 			
@@ -794,7 +794,7 @@ class ilObjMuvinGUI extends ilObjectPluginGUI
 			if($countFiles < 1)
 			{
                 
-                ilUtil::sendInfo($this->lng->txt("discontinued_muvin"));
+                ilUtil::sendInfo($this->txt("discontinued_muvin"));
 			
 				$uploadToken = $this->fileService->GetUploadSessionkey($muvinID,$derivateID,$pageURL);
                 

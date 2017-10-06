@@ -51,4 +51,4 @@ watch_video#:#Film ansehen:
 not_saved_no_upload#:#Bitte erst die Einstellungen bearbeiten und speichern.
 info_file_format#:#Zugelassene Dateiformate: MP4 (Video Codec: H.264). Bitte als Bitrate maximal 3072 Kb/s verwenden.
 nothing_to_configure#:#Dieses Plugin verwendet keine Konfiguration.
-discontinued_muvin#:#test 123
+discontinued_muvin#:#<strong>Bitte beachten Sie:</strong><br /><br />Das Objekt &bdquo;Streaming Video&ldquo; wird zum Sommersemester 2018 nicht länger zur Verfügung stehen. Aktuell wird nur noch der Upload von MP4 Dateien unterstützt. Bitte verwenden Sie dazu Safari oder Firefox in der Version 51 oder kleiner.
