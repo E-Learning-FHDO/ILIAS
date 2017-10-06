@@ -440,7 +440,7 @@ class ilObjMuvinGUI extends ilObjectPluginGUI
                 if(array_key_exists($videoInfo['type'],$allowedFiles))
 				{
 				    // add SWFObject
-                    $tpl->addJavaScript("http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js");
+                    $tpl->addJavaScript("https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js");
                     $tpl->addJavaScript("./Customizing/global/plugins/Services/Repository/RepositoryObject/Muvin/mediaplayer/jwplayer-5.10/jwplayer.js");
                     
                     
