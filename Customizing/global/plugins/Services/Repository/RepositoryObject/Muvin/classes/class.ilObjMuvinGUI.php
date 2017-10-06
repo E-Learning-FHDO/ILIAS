@@ -428,10 +428,10 @@ class ilObjMuvinGUI extends ilObjectPluginGUI
 			
             // Disabled FLV - 2017.10.06
         
-			$allowedFiles = array(/*'flv' => array(
+			$allowedFiles = array('flv' => array(
 													'extension' => 'flv', 
 													'provider' => 'rtmp'
-												), */
+												),
 								  'mpeg4' => array(
 													'extension' => 'mp4',
 													'provider' => 'http'
