@@ -288,10 +288,13 @@ class ilSoapCourseAdministration extends ilSoapAdministration
 		include_once 'Modules/Course/classes/class.ilCourseParticipants.php';
 		
 		$course_members = ilCourseParticipants::_getInstanceByObjId($tmp_course->getId());
-		if(!$course_members->checkLastAdmin(array($user_id)))
+		
+        /* REMOVED BY JAN - FIX CSE LAST ADMIN PROBLEM
+        if(!$course_members->checkLastAdmin(array($user_id)))
 		{
 			return $this->__raiseError('Cannot deassign last administrator from course','Server');
 		}
+        */
 
 		$course_members->delete($user_id);
 
