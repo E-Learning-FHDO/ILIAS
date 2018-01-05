@@ -429,7 +429,7 @@ class ilMimeMail
 
 				foreach($images as $image)
 				{
-					$mail->AddEmbeddedImage($directory.$image, 'img/'.$image, $image);
+					//$mail->AddEmbeddedImage($directory.$image, 'img/'.$image, $image);
 				}
 			}
 		}
