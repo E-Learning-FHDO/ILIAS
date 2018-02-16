@@ -432,3 +432,21 @@ while( $row = $ilDB->fetchAssoc($res) )
 }
 
 ?>
+<#33>
+<?php
+if($ilDB->tableExists('svy_answer'))
+{
+	if($ilDB->tableColumnExists('svy_answer','textanswer'))
+	{
+		$ilDB->modifyTableColumn('svy_answer', 'textanswer', array(
+			'type'	=> 'clob',
+			'notnull' => false
+		));
+	}
+}
+?>
+<#34>
+<?php
+require_once('./Services/Migration/DBUpdate_3560/classes/class.ilDBUpdateNewObjectType.php');
+ilDBUpdateNewObjectType::addRBACTemplate('orgu', 'il_orgu_employee', "OrgUnit Employee Role Template", null);
+?>
