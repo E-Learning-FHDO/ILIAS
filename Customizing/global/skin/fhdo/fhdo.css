@@ -6395,6 +6395,10 @@ a {
 .hideLogo a.navbar-brand {
   display: none !important;
 }
+div.ilc_qanswer_Answer > div:first-child {
+  float: left;
+  width: 20px;
+}
 /* Drop Downs */
 .dropdown-menu {
   background-color: #fafafa;
