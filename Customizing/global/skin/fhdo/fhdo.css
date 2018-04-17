@@ -6399,6 +6399,9 @@ div.ilc_qanswer_Answer > div:first-child {
   float: left;
   width: 20px;
 }
+div.ilc_qanswer_Answer label > p:first-child {
+  margin-top: 0;
+}
 /* Drop Downs */
 .dropdown-menu {
   background-color: #fafafa;
