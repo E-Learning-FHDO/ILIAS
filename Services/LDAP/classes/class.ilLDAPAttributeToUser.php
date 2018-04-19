@@ -163,6 +163,14 @@ class ilLDAPAttributeToUser
 			if($user['ilInternalAccount'])
 			{
 				$usr_id = ilObjUser::_lookupId($user['ilInternalAccount']);
+
+				$user_factory = new ilObjectFactory();
+				$user_obj = $user_factory->getInstanceByObjId($usr_id, false);
+				if(!$user_obj instanceof ilObjUser)
+				{
+					ilLoggerFactory::getLogger('ldap')->error('Cannot instantiate user with id:' . $usr_id);
+					continue;
+				}
 				
 				++$cnt_update;
 				// User exists
@@ -184,6 +192,9 @@ class ilLDAPAttributeToUser
 								'Type' => $role_data['type'],
 								'Action' => $role_data['action']),'');
 				}
+				$this->writer->xmlElement('Active',array(),"true");
+				$this->writer->xmlElement('TimeLimitOwner',array(),7);
+				$this->writer->xmlElement('TimeLimitUnlimited',array(),$user_obj->getTimeLimitUnlimited());
 			}
 			else
 			{
@@ -194,6 +205,13 @@ class ilLDAPAttributeToUser
                 
                                 // begin-patch ldap_username
                 $rules = $this->mapping->getRules();
+
+		$this->writer->xmlElement('Active',array(),"true");
+		$this->writer->xmlElement('TimeLimitOwner',array(),7);
+		$this->writer->xmlElement('TimeLimitUnlimited',array(),1);
+		$this->writer->xmlElement('TimeLimitFrom',array(),time());
+		$this->writer->xmlElement('TimeLimitUntil',array(),time());
+
                 //$GLOBALS['ilLog']->write(__METHOD__.': Rules JAN: '.print_r($rules));
                 
                 foreach($rules as $field => $data)
@@ -266,12 +284,6 @@ $rep = array('ae','oe','ue','ss','n','e','e','a','o','u','Ae','Oe','Ue','c','a',
             */
             // end-patch ldap_email
 
-			$this->writer->xmlElement('Active',array(),"true");
-			$this->writer->xmlElement('TimeLimitOwner',array(),7);
-			$this->writer->xmlElement('TimeLimitUnlimited',array(),1);
-			$this->writer->xmlElement('TimeLimitFrom',array(),time());
-			$this->writer->xmlElement('TimeLimitUntil',array(),time());
-			
 			// only for new users. 
 			// If auth_mode is 'default' (ldap) this status should remain.
 			if(!$user['ilInternalAccount'])
