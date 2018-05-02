@@ -164,3 +164,11 @@ rbac#:#cld_upload#:#Benutzer können Dateien in den Sciebo-Ordner laden
 rbac#:#cld_download#:#Benutzer können Dateien vom Sciebo-Ordner herunterladen
 cld#:#cld_object_added#:#Ein neuen Sciebo Ordner wurde hinzugefügt
 cld#:#cld_auth_failed_no_object_created#:#Authentifzierung fehlgeschlagen. Es wurde kein Sciebo-Ordner angelegt.
+common#:#file_suffix_default_white#:#Dateiendungen: Positivliste (Ausgangsliste)
+common#:#file_suffix_default_white_info#:#Voreingestellte Ausgangsliste für akzeptierte Dateiendungen.
+common#:#file_suffix_custom_black#:#Dateiendungen: Negativliste (Anpassungen)
+common#:#file_suffix_custom_black_info#:#Diese Dateiendungen werden aus der obigen Positivliste entfernt.
+common#:#file_suffix_custom_white#:#Dateiendungen: Positivliste (Anpassungen)
+common#:#file_suffix_custom_white_info#:#Diese Dateiendungen werden der obigen Positivliste hinzugefügt.
+common#:#file_suffix_overall_white#:#Effektive Positivliste
+common#:#file_suffix_overall_white_info#:#Dies ist die endgültige Liste akzeptierter Dateiendungen.
