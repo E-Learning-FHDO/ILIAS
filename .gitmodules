@@ -1,3 +1,15 @@
 [submodule "Customizing/global/plugins/Services/Repository/RepositoryObject/LiveVoting"]
 	path = Customizing/global/plugins/Services/Repository/RepositoryObject/LiveVoting
 	url = https://github.com/studer-raimann/LiveVoting.git
+[submodule "Customizing/global/plugins/Services/Repository/RepositoryObject/AdobeConnect"]
+	path = Customizing/global/plugins/Services/Repository/RepositoryObject/AdobeConnect
+	url = https://github.com/DatabayAG/ILIAS_AdobeConnectPlugin.git
+[submodule "Customizing/global/plugins/Services/Repository/RepositoryObject/Flashcards"]
+	path = Customizing/global/plugins/Services/Repository/RepositoryObject/Flashcards
+	url = https://github.com/ilifau/Flashcards.git
+[submodule "Customizing/global/plugins/Services/Repository/RepositoryObject/EtherpadLite"]
+	path = Customizing/global/plugins/Services/Repository/RepositoryObject/EtherpadLite
+	url = https://github.com/jrocho/ILIAS-Etherpad-Lite-Plugin.git
+[submodule "Customizing/global/plugins/Modules/Cloud/CloudHook/OwnCloud"]
+	path = Customizing/global/plugins/Modules/Cloud/CloudHook/OwnCloud
+	url = https://github.com/studer-raimann/OwnCloud.git
