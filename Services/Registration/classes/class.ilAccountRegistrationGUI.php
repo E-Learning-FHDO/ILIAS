@@ -894,11 +894,12 @@ class ilAccountRegistrationGUI
 			
 			$this->tpl->setCurrentBlock('activation');
 			$this->tpl->setVariable('TXT_REGISTERED', $lng->txt('txt_registered'));
-			
+			$this->tpl->setVariable('TXT_REGISTERED_USERNAME', $lng->txt('txt_registered_username'));
 			$action = $GLOBALS['DIC']->ctrl()->getFormAction($this, 'login').'&target='. ilUtil::stripSlashes($_GET['target']);
 			$this->tpl->setVariable('FORMACTION', $action);
 			
 			$this->tpl->setVariable('TXT_LOGIN', $lng->txt('login_to_ilias'));
+			$this->tpl->setVariable('USERNAME_SHOW', $this->userObj->getLogin());
 			$this->tpl->parseCurrentBlock();
 		}
 		else if($this->registration_settings->getRegistrationType() == IL_REG_APPROVE)
