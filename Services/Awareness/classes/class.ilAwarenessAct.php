@@ -110,6 +110,8 @@ class ilAwarenessAct
 			return;
 		}
 
+        
+        /*
 		$ts = ilSession::get("awr_online_user_ts");
 
 		$data = ilAwarenessData::getInstance($this->user_id);
@@ -131,6 +133,10 @@ class ilAwarenessAct
 				$no_ids[] = $u->id;
 			}
 		}
+        */
+        
+        $new_online_users = array();
+		$no_ids = array();
 
 		if (count($new_online_users) == 0)
 		{
