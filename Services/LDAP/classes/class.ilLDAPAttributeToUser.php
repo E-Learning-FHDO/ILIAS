@@ -233,6 +233,14 @@ class ilLDAPAttributeToUser
 			if($user['ilInternalAccount'])
 			{
 				$usr_id = ilObjUser::_lookupId($user['ilInternalAccount']);
+				$user_factory = new ilObjectFactory();
+		                $user_obj = $user_factory->getInstanceByObjId($usr_id, false);
+
+		                if(!$user_obj instanceof ilObjUser)
+		                {
+		                       ilLoggerFactory::getLogger('ldap')->error('Cannot instantiate user with id:' . $usr_id);
+                		       continue;
+		                }
 				
 				++$cnt_update;
 				// User exists
@@ -240,6 +248,10 @@ class ilLDAPAttributeToUser
 				$this->writer->xmlElement('Login',array(),$user['ilInternalAccount']);
 				$this->writer->xmlElement('ExternalAccount',array(),$external_account);
 				$this->writer->xmlElement('AuthMode',array(type => $this->getNewUserAuthMode()),null);
+
+		                $this->writer->xmlElement('Active',array(),"true");
+		                $this->writer->xmlElement('TimeLimitOwner',array(),7);
+		                $this->writer->xmlElement('TimeLimitUnlimited',array(),$user_obj->getTimeLimitUnlimited());
 
 				if($this->isModeActive(self::MODE_INITIALIZE_ROLES))
 				{
