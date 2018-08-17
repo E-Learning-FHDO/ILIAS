@@ -913,7 +913,7 @@ class ilTemplate extends HTML_Template_ITX
 	*/
 	function addILIASFooter()
 	{
-		global $DIC;
+		global $DIC, $ilIliasIniFile;
 
 		$ilSetting = $DIC->settings();
 
@@ -934,9 +934,12 @@ class ilTemplate extends HTML_Template_ITX
 		{
 			$php = ", PHP ".phpversion();
 		}
-		$ftpl->setVariable("ILIAS_VERSION", $ilSetting->get("ilias_version").$php);
-		
-		$link_items = array();
+		//$ftpl->setVariable("ILIAS_VERSION", $ilSetting->get("ilias_version").$php);
+        	$ftpl->setVariable("ILIAS_VERSION", $ilSetting->get("ilias_version").$php.' '.$ilIliasIniFile->readVariable("fhdo","server"));
+        	$ftpl->setVariable("SYSTEM_ZEIT", $lng->txt("system_zeit"));
+       	$ftpl->setVariable("SYSTEM_ZEIT_ANZEIGEN", date("H:i:s"));
+
+        	$link_items = array();
 		
 		// imprint
 		include_once "Services/Imprint/classes/class.ilImprint.php";
