@@ -132,7 +132,7 @@ class ilAccountRegistrationGUI
             // adds a hidden username field
             $usernamefield = new ilTextInputGUI("", "username");
             $usernamefield->setInputType("hidden");
-            $usernamefield->setHiddenTitle();
+            //$usernamefield->setHiddenTitle();
             $this->form->addItem($usernamefield);
             // end-patch code_username
 		}
