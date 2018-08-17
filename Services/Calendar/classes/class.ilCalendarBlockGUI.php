@@ -415,6 +415,7 @@ class ilCalendarBlockGUI extends ilBlockGUI
 			$this->user_settings->getWeekStart())->get() as $date)
 		{
 			$counter++;
+            $dont_set_td = 0;
 
 			$events = $this->scheduler->getByDay($date,$ilUser->getTimeZone());
 			$has_events = (bool)count($events);
@@ -443,6 +444,7 @@ class ilCalendarBlockGUI extends ilBlockGUI
 						if($booking->hasBooked($event['event']->getEntryId()))
 						{
 							$a_tpl->setVariable('DAY_CLASS','calminiapp');
+                            $dont_set_td = 1;
 							break;
 						}
 					}
@@ -485,7 +487,16 @@ class ilCalendarBlockGUI extends ilBlockGUI
 			#}
 			elseif(ilDateTime::_equals($date,$this->seed,IL_CAL_MONTH))
 			{
-				$a_tpl->setVariable('TD_CLASS','calministd');
+				//$a_tpl->setVariable('TD_CLASS','calministd');
+                //$a_tpl->setVariable('TD_CLASS','calministd');
+                if($dont_set_td == 0)
+                {
+                    $a_tpl->setVariable('TD_CLASS','calministd');
+                }
+                else
+                {
+                    $a_tpl->setVariable('TD_CLASS','calministd calminiapp');
+                }
 			}
 			elseif(ilDateTime::_before($date,$this->seed,IL_CAL_MONTH))
 			{
