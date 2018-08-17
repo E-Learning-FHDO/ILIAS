@@ -236,7 +236,9 @@
                     <Field store="YES" index="ANALYZED" column="ref_id" type="integer" name="orgUnit" />
                 </DataSource>
 	</Document>
+    <!--
 	<Document type="subItem">
 		<xi:include href="../../Services/Mail/LuceneDataSource.xml" />
 	</Document>
+    -->
 </ObjectDefinition>

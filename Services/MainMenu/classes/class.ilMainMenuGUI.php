@@ -347,11 +347,6 @@ class ilMainMenuGUI
 				$this->tpl->setCurrentBlock("userisanonymous");
 				$this->tpl->setVariable("TXT_NOT_LOGGED_IN",$lng->txt("not_logged_in"));
 				$this->tpl->setVariable("TXT_LOGIN",$lng->txt("log_in"));
-                
-                //JAN, patch to hide header icon on reduced view (portfolio)
-                $this->tpl->setVariable("HEADER_ICON",ilUtil::getImagePath("HeaderIcon.svg"));
-                $this->tpl->setVariable("HEADER_HIDE",' hideHeaderIcon');
-                // end patch
 
 				// #13058
 				$target_str = ($this->getLoginTargetPar() != "")
@@ -409,7 +404,15 @@ class ilMainMenuGUI
 			$this->tpl->setVariable("TXT_HEADER_BACK", $this->topbar_back_caption
 				? $this->topbar_back_caption
 				: $lng->txt("back"));
-			$this->tpl->parseCurrentBlock();			
+			 // JAN
+            // hide logo in top bar
+            $this->tpl->setVariable("TOPBAR_CLASS", " hideLogo");
+			$this->tpl->parseCurrentBlock();		
+            
+            //JAN, patch to hide header icon on reduced view (portfolio)
+            $this->tpl->setVariable("HEADER_ICON",ilUtil::getImagePath("HeaderIcon.svg"));
+            $this->tpl->setVariable("HEADER_HIDE",' hideHeaderIcon');
+            // end patch			
 		}
 
 		$this->tpl->setVariable("LOCATION_STYLESHEET", ilUtil::getStyleSheetLocation());
@@ -421,6 +424,14 @@ class ilMainMenuGUI
 			$this->tpl->setVariable("HEADER_ICON", ilUtil::getImagePath("HeaderIcon.svg"));
 			$this->tpl->setVariable("HEADER_ICON_RESPONSIVE", ilUtil::getImagePath("HeaderIconResponsive.svg"));
 		}
+        
+        if($this->getMode() == self::MODE_TOPBAR_ONLY)
+        {
+            //JAN, patch to hide header icon on reduced view (portfolio)
+            $this->tpl->setVariable("HEADER_ICON",ilUtil::getImagePath("HeaderIcon.svg"));
+            $this->tpl->setVariable("HEADER_HIDE",' hideHeaderIcon');
+            // end patch
+        }
 		
 		include_once("./Modules/SystemFolder/classes/class.ilObjSystemFolder.php");
 
