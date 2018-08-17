@@ -586,6 +586,7 @@ class ilAttendanceList
 	 */
 	public function getHTML()
 	{				
+        global $ilIliasIniFile;
 		$tpl = new ilTemplate('tpl.attendance_list_print.html',true,true,'Services/Membership');
 
 		
@@ -701,58 +702,59 @@ class ilAttendanceList
 		
 		foreach($valid_user_ids as $user_id)
 		{
-			if($this->callback)
+            		if($user_id != $ilIliasIniFile->readVariable("fhdo", "cse_id"))
+            		{
+                		if($this->callback) 
+                		{
+                			$user_data = call_user_func_array($this->callback, array($user_id, $filters));
+					if(!$user_data) 
+                			{
+                				continue;
+                    			}
+
+					$tpl->setCurrentBlock("row_preset");
+                    			foreach($this->presets as $id => $item) 
+                    			{
+                        			if($item[1]) 
+                        			{
+                            				switch($id) 
+							{
+                						case "name":
+								if(!$user_data[$id]) 
+                                    				{
+				                                        $name = ilObjUser::_lookupName($user_id);
+                                				        $value = $name["lastname"] . ", " . $name["firstname"];
+                                				        break;
+                                				}
+
+                                				case "login":
+				                                if(!$user_data[$id]) 
+                                				{
+                                					$value = ilObjUser::_lookupLogin($user_id);
+                                					break;
+                                				}
+
+                                				default:
+                                					$value = (string)$user_data[$id];
+                                					break;
+                            				}
+							$tpl->setVariable("TXT_PRESET", (string)$value);
+							$tpl->parseCurrentBlock();
+                        			}
+                    			}
+                		}
+            		}
+
+			if($this->blank_columns) 
 			{
-				$user_data = call_user_func_array($this->callback, array($user_id, $filters));	
-				if(!$user_data)
-				{
-					continue;
-				}
-				
-				$tpl->setCurrentBlock("row_preset");
-				foreach($this->presets as $id => $item)
-				{
-					if($item[1])
-					{
-						switch($id)
-						{
-							case "name":
-								if(!$user_data[$id])
-								{
-									$name = ilObjUser::_lookupName($user_id);
-									$value = $name["lastname"].", ".$name["firstname"];
-									break;
-								}
-								
-
-							case "login":
-								if(!$user_data[$id])
-								{
-									$value = ilObjUser::_lookupLogin($user_id);
-									break;
-								}							
-
-							default:
-								$value = (string) $user_data[$id];
-								break;
-						}
-						$tpl->setVariable("TXT_PRESET", (string) $value);
-						$tpl->parseCurrentBlock();
-					}
-				}								
-			}
-
-			if($this->blank_columns)
-			{
-				for($loop = 0; $loop < sizeof($this->blank_columns); $loop++)
+				for($loop = 0; $loop < sizeof($this->blank_columns); $loop++) 
 				{
 					$tpl->touchBlock('row_blank');
 				}
 			}
-			
+
 			$tpl->touchBlock("member_row");
 		}
-		
 		return $tpl->get();
 	}
 }

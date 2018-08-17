@@ -269,7 +269,7 @@ class ilCourseMembershipGUI extends ilMembershipGUI
 	 */
 	protected function getPrintMemberData($a_members)
 	{
-		global $ilAccess,$lng;
+		global $ilAccess,$lng,$ilIliasIniFile;
 
 		$lng->loadLanguageModule('trac');
 
@@ -309,107 +309,80 @@ class ilCourseMembershipGUI extends ilMembershipGUI
 
 		foreach($a_members as $member_id)
 		{
-			// GET USER OBJ
-			if($tmp_obj = ilObjectFactory::getInstanceByObjId($member_id,false))
-			{
-				// udf
-				include_once './Services/User/classes/class.ilUserDefinedData.php';
-				$udf_data = new ilUserDefinedData($member_id);
-				foreach($udf_data->getAll() as $field => $value)
-				{
-					list($f,$field_id) = explode('_', $field);
-					$print_member[$member_id]['udf_'.$field_id] = (string) $value;
-				}
-				
-				foreach((array) $cdfs[$member_id] as $cdf_field => $cdf_value)
-				{
-					$print_member[$member_id]['cdf_'.$cdf_field] = (string) $cdf_value;
-				}
+		    // FHDO: only get member if not cse
+            if($member_id != $ilIliasIniFile->readVariable("fhdo","cse_id"))
+            {
+                // GET USER OBJ
+                if ($tmp_obj = ilObjectFactory::getInstanceByObjId($member_id, false)) {
+                    // udf
+                    include_once './Services/User/classes/class.ilUserDefinedData.php';
+                    $udf_data = new ilUserDefinedData($member_id);
+                    foreach ($udf_data->getAll() as $field => $value) {
+                        list($f, $field_id) = explode('_', $field);
+                        $print_member[$member_id]['udf_' . $field_id] = (string)$value;
+                    }
 
-				foreach((array) $profile_data[$member_id] as $field => $value)
-				{
-					$print_member[$member_id][$field] = $value;
-				}
-				
-				$print_member[$member_id]['login'] = $tmp_obj->getLogin();
-				$print_member[$member_id]['name'] = $tmp_obj->getLastname().', '.$tmp_obj->getFirstname();
+                    foreach ((array)$cdfs[$member_id] as $cdf_field => $cdf_value) {
+                        $print_member[$member_id]['cdf_' . $cdf_field] = (string)$cdf_value;
+                    }
 
-				if($this->getMembersObject()->isAdmin($member_id))
-				{
-					$print_member[$member_id]['role'] = $this->lng->txt("il_crs_admin");
-				}
-				elseif($this->getMembersObject()->isTutor($member_id))
-				{
-					$print_member[$member_id]['role'] = $this->lng->txt("il_crs_tutor");
-				}
-				elseif($this->getMembersObject()->isMember($member_id))
-				{
-					$print_member[$member_id]['role'] = $this->lng->txt("il_crs_member");
-				}
-				if($this->getMembersObject()->isAdmin($member_id) or $this->getMembersObject()->isTutor($member_id))
-				{
-					if($this->getMembersObject()->isNotificationEnabled($member_id))
-					{
-						$print_member[$member_id]['status'] = $this->lng->txt("crs_notify");
-					}
-					else
-					{
-						$print_member[$member_id]['status'] = $this->lng->txt("crs_no_notify");
-					}
-				}
-				else
-				{
-					if($this->getMembersObject()->isBlocked($member_id))
-					{
-						$print_member[$member_id]['status'] = $this->lng->txt("crs_blocked");
-					}
-					else
-					{
-						$print_member[$member_id]['status'] = $this->lng->txt("crs_unblocked");
-					}
-				}
-	
-				if($is_admin)
-				{
-					$print_member[$member_id]['passed'] = $this->getMembersObject()->hasPassed($member_id) ?
-									  $this->lng->txt('crs_member_passed') :
-									  $this->lng->txt('crs_member_not_passed');
-					
-				}
-				if($privacy->enabledCourseAccessTimes())
-				{
-					if(isset($progress[$member_id]['ts']) and $progress[$member_id]['ts'])
-					{
-						ilDatePresentation::setUseRelativeDates(false);
-						$print_member[$member_id]['access'] = ilDatePresentation::formatDate(new ilDateTime($progress[$member_id]['ts'],IL_CAL_UNIX));
-						ilDatePresentation::setUseRelativeDates(true);
-					}
-					else
-					{
-						$print_member[$member_id]['access'] = $this->lng->txt('no_date');
-					}
-				}
-				if($show_tracking)
-				{
-					if(in_array($member_id,$completed))
-					{
-						$print_member[$member_id]['progress'] = $this->lng->txt(ilLPStatus::LP_STATUS_COMPLETED);
-					}
-					elseif(in_array($member_id,$in_progress))
-					{
-						$print_member[$member_id]['progress'] = $this->lng->txt(ilLPStatus::LP_STATUS_IN_PROGRESS);
-					}
-					elseif(in_array($member_id,$failed))
-					{
-						$print_member[$member_id]['progress'] = $this->lng->txt(ilLPStatus::LP_STATUS_FAILED);
-					}
-					else
-					{
-						$print_member[$member_id]['progress'] = $this->lng->txt(ilLPStatus::LP_STATUS_NOT_ATTEMPTED);
-					}
-				}
-				
-			}
+                    foreach ((array)$profile_data[$member_id] as $field => $value) {
+                        $print_member[$member_id][$field] = $value;
+                    }
+
+                    $print_member[$member_id]['login'] = $tmp_obj->getLogin();
+                    $print_member[$member_id]['name'] = $tmp_obj->getLastname() . ', ' . $tmp_obj->getFirstname();
+
+                    if ($this->getMembersObject()->isAdmin($member_id)) {
+                        $print_member[$member_id]['role'] = $this->lng->txt("il_crs_admin");
+                    } elseif ($this->getMembersObject()->isTutor($member_id)) {
+                        $print_member[$member_id]['role'] = $this->lng->txt("il_crs_tutor");
+                    } elseif ($this->getMembersObject()->isMember($member_id)) {
+                        $print_member[$member_id]['role'] = $this->lng->txt("il_crs_member");
+                    }
+                    if ($this->getMembersObject()->isAdmin($member_id) or $this->getMembersObject()->isTutor($member_id)) {
+                        if ($this->getMembersObject()->isNotificationEnabled($member_id)) {
+                            $print_member[$member_id]['status'] = $this->lng->txt("crs_notify");
+                        } else {
+                            $print_member[$member_id]['status'] = $this->lng->txt("crs_no_notify");
+                        }
+                    } else {
+                        if ($this->getMembersObject()->isBlocked($member_id)) {
+                            $print_member[$member_id]['status'] = $this->lng->txt("crs_blocked");
+                        } else {
+                            $print_member[$member_id]['status'] = $this->lng->txt("crs_unblocked");
+                        }
+                    }
+
+                    if ($is_admin) {
+                        $print_member[$member_id]['passed'] = $this->getMembersObject()->hasPassed($member_id) ?
+                            $this->lng->txt('crs_member_passed') :
+                            $this->lng->txt('crs_member_not_passed');
+
+                    }
+                    if ($privacy->enabledCourseAccessTimes()) {
+                        if (isset($progress[$member_id]['ts']) and $progress[$member_id]['ts']) {
+                            ilDatePresentation::setUseRelativeDates(false);
+                            $print_member[$member_id]['access'] = ilDatePresentation::formatDate(new ilDateTime($progress[$member_id]['ts'], IL_CAL_UNIX));
+                            ilDatePresentation::setUseRelativeDates(true);
+                        } else {
+                            $print_member[$member_id]['access'] = $this->lng->txt('no_date');
+                        }
+                    }
+                    if ($show_tracking) {
+                        if (in_array($member_id, $completed)) {
+                            $print_member[$member_id]['progress'] = $this->lng->txt(ilLPStatus::LP_STATUS_COMPLETED);
+                        } elseif (in_array($member_id, $in_progress)) {
+                            $print_member[$member_id]['progress'] = $this->lng->txt(ilLPStatus::LP_STATUS_IN_PROGRESS);
+                        } elseif (in_array($member_id, $failed)) {
+                            $print_member[$member_id]['progress'] = $this->lng->txt(ilLPStatus::LP_STATUS_FAILED);
+                        } else {
+                            $print_member[$member_id]['progress'] = $this->lng->txt(ilLPStatus::LP_STATUS_NOT_ATTEMPTED);
+                        }
+                    }
+
+                }
+            } // FHDO: end
 		}
 		return ilUtil::sortArray($print_member,'name',$_SESSION['crs_print_order'], false, true);
 	}
