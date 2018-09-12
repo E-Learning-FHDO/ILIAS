@@ -877,7 +877,7 @@ class ilTemplate extends ilTemplateX
         }
         
         if(!isset($fhdoServerId))
-            $fhdoServerId = '';
+            $fhdoServerId = $fhdoServerIniFile;
             
 		//$ftpl->setVariable("ILIAS_VERSION", $ilias->getSetting("ilias_version"));
         $ftpl->setVariable("ILIAS_VERSION", $ilias->getSetting("ilias_version").' '.$fhdoServerId);
