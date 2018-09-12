@@ -934,10 +934,30 @@ class ilTemplate extends HTML_Template_ITX
 		{
 			$php = ", PHP ".phpversion();
 		}
+        
+        if($ilIliasIniFile->variableExists("fhdo","server"))
+            $fhdoServerId = $ilIliasIniFile->readVariable("fhdo","server");
+        
+        if($ilIliasIniFile->variableExists("fhdo","localinifolder") && !isset($fhdoServerId))
+        {
+            $fhdoIniFolder = $ilIliasIniFile->readVariable("fhdo","localinifolder");
+            $fhdoServerIniFile = $fhdoIniFolder.'/ilias.local.ini.php';
+            
+            if(file_exists($fhdoServerIniFile))
+            {
+                $fhdoIliasIni = parse_ini_file($fhdoServerIniFile);
+                $fhdoServerId = $fhdoIliasIni['server_id'];
+            }
+        }
+        
+        if(!isset($fhdoServerId))
+            $fhdoServerId = '';
+        
 		//$ftpl->setVariable("ILIAS_VERSION", $ilSetting->get("ilias_version").$php);
-        	$ftpl->setVariable("ILIAS_VERSION", $ilSetting->get("ilias_version").$php.' '.$ilIliasIniFile->readVariable("fhdo","server"));
-        	$ftpl->setVariable("SYSTEM_ZEIT", $lng->txt("system_zeit"));
+        $ftpl->setVariable("ILIAS_VERSION", $ilSetting->get("ilias_version").$php.' '.$fhdoServerId);
+        $ftpl->setVariable("SYSTEM_ZEIT", $lng->txt("system_zeit"));
        	$ftpl->setVariable("SYSTEM_ZEIT_ANZEIGEN", date("H:i:s"));
+        // END: JAN
 
         	$link_items = array();
 		
