@@ -860,8 +860,29 @@ class ilTemplate extends ilTemplateX
 		
 		$ftpl = new ilTemplate("tpl.footer.html", true, true, "Services/UICore");
 		
+        // JAN
+        if($ilIliasIniFile->variableExists("fhdo","server"))
+            $fhdoServerId = $ilIliasIniFile->readVariable("fhdo","server");
+        
+        if($ilIliasIniFile->variableExists("fhdo","localinifolder") && !isset($fhdoServerId))
+        {
+            $fhdoIniFolder = $ilIliasIniFile->readVariable("fhdo","localinifolder");
+            $fhdoServerIniFile = $fhdoIniFolder.'/ilias.local.ini.php';
+            
+            if(file_exists($fhdoServerIniFile))
+            {
+                $fhdoIliasIni = parse_ini_file($fhdoServerIniFile);
+                $fhdoServerId = $fhdoIliasIni['server_id'];
+            }
+        }
+        
+        if(!isset($fhdoServerId))
+            $fhdoServerId = $fhdoServerIniFile;
+            
 		//$ftpl->setVariable("ILIAS_VERSION", $ilias->getSetting("ilias_version"));
-        $ftpl->setVariable("ILIAS_VERSION", $ilias->getSetting("ilias_version").' '.$ilIliasIniFile->readVariable("fhdo","server"));
+        $ftpl->setVariable("ILIAS_VERSION", $ilias->getSetting("ilias_version").' '.$fhdoServerId);
+        // END: JAN
+        
         $ftpl->setVariable("SYSTEM_ZEIT", $lng->txt("system_zeit"));
         $ftpl->setVariable("SYSTEM_ZEIT_ANZEIGEN", date("H:i:s"));
 		
