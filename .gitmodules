@@ -13,6 +13,3 @@
 [submodule "Customizing/global/plugins/Modules/Cloud/CloudHook/OwnCloud"]
 	path = Customizing/global/plugins/Modules/Cloud/CloudHook/OwnCloud
 	url = https://github.com/studer-raimann/OwnCloud.git
-[submodule "Customizing/global/skin/FHDortmund"]
-	path = Customizing/global/skin/FHDortmund
-	url = https://github.com/ezenzen/FH_Dortmund.git
