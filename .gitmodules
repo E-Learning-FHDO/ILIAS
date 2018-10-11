@@ -15,4 +15,4 @@
 	url = https://github.com/studer-raimann/OwnCloud.git
 [submodule "Customizing/global/skin/FHDortmund"]
 	path = Customizing/global/skin/FHDortmund
-	url = git@github.com:E-Learning-FHDO/FH_Dortmund.git
+	url = https://github.com/E-Learning-FHDO/FH_Dortmund.git
