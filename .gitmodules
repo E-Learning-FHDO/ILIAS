@@ -18,4 +18,4 @@
 	url = https://github.com/E-Learning-FHDO/FH_Dortmund.git
 [submodule "ifv"]
 	path = ifv
-	url = https://git.ilias.fh-dortmund.de/jan/ifv.git
+	url = ssh://git@git.ilias.fh-dortmund.de/jan/ifv.git
