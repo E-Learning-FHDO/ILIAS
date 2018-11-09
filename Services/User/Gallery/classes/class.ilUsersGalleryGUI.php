@@ -189,7 +189,8 @@ class ilUsersGalleryGUI
 			foreach($group as $user)
 			{
 
-                        if($ilIliasIniFile->variableExists("fhdo","cse_id") &&
+                        if(isset($ilIliasIniFile) &&
+                            $ilIliasIniFile->variableExists("fhdo", "cse_id") &&
                             $user->getAggregatedUser()->getId() != $ilIliasIniFile->readVariable("fhdo","cse_id"))
 		                {
 		                    $card = $this->factory->card($user->getPublicName());

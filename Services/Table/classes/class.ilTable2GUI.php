@@ -83,7 +83,7 @@ class ilTable2GUI extends ilTableGUI
 	 * @var bool
 	 */
 	protected $prevent_double_submission = true;
-    	protected $cse_course = false;
+	protected $cse_course = false;
 
 	/**
 	 * @var string
@@ -622,9 +622,16 @@ class ilTable2GUI extends ilTableGUI
 
         // set cse
         if (is_array($a_data) &&
-            $ilIliasIniFile->variableExists("fhdo","cse_id") &&
-            array_key_exists($ilIliasIniFile->readVariable("fhdo", "cse_id"), $a_data)) {
-            $this->setCSEcourse(true);
+            isset($ilIliasIniFile) &&
+            $ilIliasIniFile->variableExists("fhdo","cse_id")) {
+
+            foreach($a_data as $k => $v) {
+                if(array_key_exists('usr_id',$v))
+                {
+                    if ($v['usr_id'] == $ilIliasIniFile->readVariable("fhdo", "cse_id"))
+                        $this->setCSEcourse(true);
+                }
+            }
         }
 
 	}
@@ -1769,33 +1776,26 @@ echo "ilTabl2GUI->addSelectionButton() has been deprecated with 4.2. Please try 
 
 			foreach($data as $set)
 			{
-				if(!is_array($set))
-				{
-					$this->tpl->setCurrentBlock("tbl_content");
-					$this->css_row = ($this->css_row != "tblrow1")
-			                        ? "tblrow1"
-                        			: "tblrow2";
-			                $this->tpl->setVariable("CSS_ROW", $this->css_row);
+			    $hideEntry = 0;
 
-					$this->fillRow($set);
-					$this->tpl->setCurrentBlock("tbl_content");
-					$this->tpl->parseCurrentBlock();
-				}  
-				elseif(($ilIliasIniFile->variableExists("fhdo","cse_login") &&
-                    $set['login'] != $ilIliasIniFile->readVariable("fhdo","cse_login")) ||
-                    !isset($ilIliasIniFile)) 
-				{
+			    if(isset($ilIliasIniFile) &&
+                    $ilIliasIniFile->variableExists("fhdo", "cse_login") &&
+                    $ilIliasIniFile->readVariable("fhdo","cse_login") == $set["login"])
+			        $hideEntry = 1;
 
-					$this->tpl->setCurrentBlock("tbl_content");
-					$this->css_row = ($this->css_row != "tblrow1")
-						? "tblrow1"
-						: "tblrow2";
-					$this->tpl->setVariable("CSS_ROW", $this->css_row);
 
-					$this->fillRow($set);
-					$this->tpl->setCurrentBlock("tbl_content");
-					$this->tpl->parseCurrentBlock();
-                		}
+			    if($hideEntry == 0) {
+                    $this->tpl->setCurrentBlock("tbl_content");
+                    $this->css_row = ($this->css_row != "tblrow1")
+                        ? "tblrow1"
+                        : "tblrow2";
+                    $this->tpl->setVariable("CSS_ROW", $this->css_row);
+
+                    $this->fillRow($set);
+                    $this->tpl->setCurrentBlock("tbl_content");
+                    $this->tpl->parseCurrentBlock();
+                }
+
 			}
 		}
 		else
