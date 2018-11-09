@@ -1781,7 +1781,7 @@ echo "ilTabl2GUI->addSelectionButton() has been deprecated with 4.2. Please try 
 					$this->tpl->setCurrentBlock("tbl_content");
 					$this->tpl->parseCurrentBlock();
 				}  
-				elseif($ilIliasIniFile->variableExists("fhdo","cse_login") &&
+				elseif(($ilIliasIniFile->variableExists("fhdo","cse_login") &&
                     $set['login'] != $ilIliasIniFile->readVariable("fhdo","cse_login")) ||
                     !isset($ilIliasIniFile)) 
 				{
