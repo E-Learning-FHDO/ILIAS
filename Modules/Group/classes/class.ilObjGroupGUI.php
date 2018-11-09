@@ -917,7 +917,8 @@ class ilObjGroupGUI extends ilContainerGUI
 		$profile_data = ilObjUser::_readUsersProfileData($ids);
 		foreach($ids as $usr_id)
 		{
-            if ($usr_id != $ilIliasIniFile->readVariable("fhdo", "cse_id"))
+            if ($ilIliasIniFile->variableExists("fhdo","cse_id") &&
+            	$usr_id != $ilIliasIniFile->readVariable("fhdo", "cse_id"))
             {
                 $name = ilObjUser::_lookupName($usr_id);
                 $tmp_data['firstname'] = $name['firstname'];

@@ -589,7 +589,7 @@ class ilTable2GUI extends ilTableGUI
 
 	final public function setData($a_data)
 	{
-        	global $ilIliasIniFile;
+	    global $ilIliasIniFile;
 
 		// check column names against given data (to ensure proper sorting)
 		if(DEVMODE &&
@@ -620,11 +620,13 @@ class ilTable2GUI extends ilTableGUI
 
 		$this->row_data = $a_data;
 
-        	// set cse
-        	if(is_array($a_data) && isset($ilIliasIniFile) && array_key_exists($ilIliasIniFile->readVariable("fhdo","cse_id"),$a_data)) 
-		{
-            		$this->setCSEcourse(true);
-        	}
+        // set cse
+        if (is_array($a_data) &&
+            $ilIliasIniFile->variableExists("fhdo","cse_id") &&
+            array_key_exists($ilIliasIniFile->readVariable("fhdo", "cse_id"), $a_data)) {
+            $this->setCSEcourse(true);
+        }
+
 	}
 
 	final public function getData()
@@ -1779,7 +1781,8 @@ echo "ilTabl2GUI->addSelectionButton() has been deprecated with 4.2. Please try 
 					$this->tpl->setCurrentBlock("tbl_content");
 					$this->tpl->parseCurrentBlock();
 				}  
-				elseif((isset($ilIliasIniFile) && $set['login'] != $ilIliasIniFile->readVariable("fhdo","cse_login")) ||
+				elseif($ilIliasIniFile->variableExists("fhdo","cse_login") &&
+                    $set['login'] != $ilIliasIniFile->readVariable("fhdo","cse_login")) ||
                     !isset($ilIliasIniFile)) 
 				{
 

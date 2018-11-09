@@ -702,7 +702,8 @@ class ilAttendanceList
 		
 		foreach($valid_user_ids as $user_id)
 		{
-            		if($user_id != $ilIliasIniFile->readVariable("fhdo", "cse_id"))
+            		if($ilIliasIniFile->variableExists("fhdo","cse_id") &&
+                        $user_id != $ilIliasIniFile->readVariable("fhdo", "cse_id"))
             		{
                 		if($this->callback) 
                 		{

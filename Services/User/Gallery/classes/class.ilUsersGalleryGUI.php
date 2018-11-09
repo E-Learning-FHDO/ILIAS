@@ -189,7 +189,8 @@ class ilUsersGalleryGUI
 			foreach($group as $user)
 			{
 
-                        if($user->getAggregatedUser()->getId() != $ilIliasIniFile->readVariable("fhdo","cse_id"))
+                        if($ilIliasIniFile->variableExists("fhdo","cse_id") &&
+                            $user->getAggregatedUser()->getId() != $ilIliasIniFile->readVariable("fhdo","cse_id"))
 		                {
 		                    $card = $this->factory->card($user->getPublicName());
 		                    $avatar = $this->factory->image()->standard($user->getAggregatedUser()->getPersonalPicturePath('big'), $user->getPublicName());

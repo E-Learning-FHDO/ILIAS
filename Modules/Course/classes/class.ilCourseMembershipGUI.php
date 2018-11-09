@@ -310,7 +310,8 @@ class ilCourseMembershipGUI extends ilMembershipGUI
 		foreach($a_members as $member_id)
 		{
 		    // FHDO: only get member if not cse
-            if($member_id != $ilIliasIniFile->readVariable("fhdo","cse_id"))
+            if($ilIliasIniFile->variableExists("fhdo","cse_id") &&
+                $member_id != $ilIliasIniFile->readVariable("fhdo","cse_id"))
             {
                 // GET USER OBJ
                 if ($tmp_obj = ilObjectFactory::getInstanceByObjId($member_id, false)) {
