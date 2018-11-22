@@ -119,14 +119,14 @@ class ilBibliographicSetting extends ActiveRecord {
                     } elseif (!empty($attributes[$prefix . "do"])) {
                         $attr = array( "do" );
                     } elseif (!empty($attributes[$prefix . "id"])) {
-                        $attr = array( "do" );
+                        $attr = array( "an" );
                     } else {
                         $attr = array( "ti", "t1", "au", "py", "is", "vl" );
                     }
                 }
 				break;
 		}
-        
+                
         if(strpos($this->getURL(), '?') !== false) {
             $url_params = "&";
         } else {
@@ -138,6 +138,8 @@ class ilBibliographicSetting extends ActiveRecord {
 				$url_params .= "id=" . $this->formatAttribute($attr[0], $type, $attributes, $prefix) . "%3A" . $attributes[$prefix . $attr[0]];
 			} elseif ($attr[0] == "do") {
 				$url_params .= "id=" . $this->formatAttribute($attr[0], $type, $attributes, $prefix) . "i%3A" . $attributes[$prefix . $attr[0]];
+            } elseif ($attr[0] == "id") {
+				$url_params .= "an=" . substr($this->formatAttribute($attr[0], $type, $attributes, $prefix),3) . urlencode($attributes[$prefix . $attr[0]]);
 			}  else {
 				$url_params .= $this->formatAttribute($attr[0], $type, $attributes, $prefix) . "=" . urlencode($attributes[$prefix . $attr[0]]);
 			}} else {
