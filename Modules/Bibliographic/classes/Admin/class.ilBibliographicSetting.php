@@ -111,17 +111,28 @@ class ilBibliographicSetting extends ActiveRecord {
 				break;
 			case 'ris':
 				$prefix = "ris_" . strtolower($entry->getType()) . "_";
-				if (!empty($attributes[$prefix . "sn"])) {
-					$attr = array( "sn" );
-				} elseif (!empty($attributes[$prefix . "do"])) {
-					$attr = array( "do" );
-				} else {
-					$attr = array( "ti", "t1", "au", "py", "is", "vl" );
-				}
+                if (!empty($attributes[$prefix . "id"])) {
+                    $attr = Array( "id" );
+                } else {
+                    if (!empty($attributes[$prefix . "sn"])) {
+                        $attr = array( "sn" );
+                    } elseif (!empty($attributes[$prefix . "do"])) {
+                        $attr = array( "do" );
+                    } elseif (!empty($attributes[$prefix . "id"])) {
+                        $attr = array( "do" );
+                    } else {
+                        $attr = array( "ti", "t1", "au", "py", "is", "vl" );
+                    }
+                }
 				break;
 		}
-
-		$url_params = "?";
+        
+        if(strpos($this->getURL(), '?') !== false) {
+            $url_params = "&";
+        } else {
+		  $url_params = "?";
+        }
+        
 		if (sizeof($attr) == 1) {
 			if (($attr[0] == "doi") || ($attr[0] == "pmid")) {
 				$url_params .= "id=" . $this->formatAttribute($attr[0], $type, $attributes, $prefix) . "%3A" . $attributes[$prefix . $attr[0]];
