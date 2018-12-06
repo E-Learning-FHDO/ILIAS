@@ -4,10 +4,10 @@
 *
 * @module			language file German
 * @modulegroup		language
-* @based_on			$Id: ilias_de.lang 61469 2015-12-15 12:09:55Z jrocho $
-* @il_server		http://www.ilias.fh-dortmund.de/ilias
-* @il_version		5.0.8 2015-11-24
-* @created			2016-02-24 15:51:42
+* @based_on			$Id$
+* @il_server		http://local.mamp/5_1_fhdo
+* @il_version		5.1.28 2018-08-01
+* @created			2018-10-31 15:54:30
 * @created_by		Jan Rocho <jan.rocho@fh-dortmund.de>
 */
 // The language file starts beyond the HTML-comment below. DO NOT modify this line!
@@ -22,6 +22,15 @@ bibl#:#bib_default_editor#:#Herausgeber
 bibl#:#bib_default_publisher#:#Verlag
 certificate#:#certificate_ph_matriculation#:#Matrikelnummer des Benutzers
 certificate#:#certificate_var_matriculation#:#12345
+cld#:#cld_add#:#Sciebo-Ordner erstellen
+cld#:#cld_auth_failed_no_object_created#:#Authentifzierung fehlgeschlagen. Es wurde kein Sciebo-Ordner angelegt.
+cld#:#cld_edit_Settings#:#Sciebo Einstellungen
+cld#:#cld_file_not_existing_on_service#:#Datei existiert in Sciebo nicht:
+cld#:#cld_folder_already_existing_on_service#:#Ordner existiert bereits in Sciebo
+cld#:#cld_folder_not_existing_on_service#:#Ordner existiert nicht in Sciebo
+cld#:#cld_new#:#Neuen Sciebo Ordner hinzufügen
+cld#:#cld_object_added#:#Ein neuer Sciebo Ordner wurde hinzugefügt
+cld#:#cld_only_owner_has_permission_to_change_root_path#:#Um die Privatsphäre des Besitzers des Sciebo-Ordners zu schützen, kann nur der Ersteller eines Sciebo-Objektes dessen Basisverzeichnis ändern.
 common#:#chat_invite#:#Chat Einladung
 common#:#default_role#:#Fachbereich
 common#:#default_role_error_notnull#:#Sie haben keinen Fachbereich ausgewählt
@@ -29,16 +38,25 @@ common#:#default_role_register#:#Fachbereich
 common#:#default_studiengang#:#Studiengang
 common#:#default_studiengang_error#:#Sie haben keinen Studiengang ausgewählt
 common#:#fhkennung#:#FHKennung
-common#:#filename_special_characters#:# 
+common#:#filename_special_characters#:#&nbsp;
 common#:#hobby#:#Ansprechpartner im Fachbereich
 common#:#il_xavc_admin#:#Adobe Connect Administrator
 common#:#il_xavc_member#:#Adobe Connect Mitglied
 common#:#learning_module#:#Lernmodul
 common#:#matriculation_exists#:#Diese Matrikelnummer/FHKennung ist bereits registriert.
+common#:#mem_view_activate#:#Vorschau als Mitglied
+common#:#mem_view_close#:#Vorschau als Mitglied schließen
+common#:#mem_view_deactivate#:#Vorschau als Mitglied deaktivieren
+common#:#mem_view_long#:#Vorschau als Mitglied
 common#:#menu_mobile#:#Menü
+common#:#objs_cld#:#sciebo-Ordner
+common#:#objs_xavc#:#Adobe Meetings
+common#:#objs_xflc#:#Lernkarten-Trainings
+common#:#objs_xlvo#:#Live Votings
 common#:#objs_xmvn#:#Streaming Video
 common#:#objs_xmvn_duplicate#:#MUVIN kopieren
 common#:#objs_xpdl#:#Etherpad Lite
+common#:#obj_cld#:#Sciebo-Ordner
 common#:#obj_xavc#:#Adobe Connect
 common#:#obj_xmvn#:#Streaming Video
 common#:#obj_xmvn_duplicate#:#Kopieren
@@ -46,10 +64,15 @@ common#:#obj_xmvn_select#:#MUVIN auswählen
 common#:#ods_connectproblem#:#Im Moment besteht ein Problem beim Datenabgleich mit ODS. Bitte versuchen Sie es später erneut.
 common#:#ods_error#:#Fehler beim Login, bitte FHKennung und Passwort prüfen!
 common#:#ods_shortpass#:#Sie haben Ihr ODS Passwort zwar richtig eingegeben, allerdings ist ihr ODS Passwort zu kurz für ILIAS. ILIAS Benötigt ein Passwort mit mindestens 6 Zeichen. Bitte ändern Sie Ihr Passwort in ODS in ein längeres und registrieren Sie sich erneut bei ILIAS.
+common#:#preview_learner#:#Vorschau als Mitglied
 common#:#print_no_page_selected#:#Es wurde weder eine Seite noch ein Kapitel zum Drucken ausgewählt.
 common#:#rbac_create_dbk#:#Digibib anlegen
 common#:#rbac_create_icrs#:#ILinc Kurs anlegen
 common#:#referral_comment#:#Warum benötigen Sie Zugang zu ILIAS?
+common#:#rep_robj_xavc_rbac_create_xavc#:#Adobe Connect anlegen
+common#:#rep_robj_xflc_rbac_create_xflc#:#Lernkarten anlegen
+common#:#rep_robj_xlvo_fold_create_xlvo#:#Adobe Connect anlegen
+common#:#rep_robj_xlvo_rbac_create_xlvo#:#Live Voting anlegen
 common#:#settings_for_all_members#:#Globale Einstellung für alle Kurs/Gruppen Mitglieder
 common#:#settings_per_users#:#Einstellungen pro Kurs/Gruppen Mitglieder
 common#:#system_zeit#:#Systemzeit
@@ -57,6 +80,7 @@ common#:#txt_account_type#:#Bitte wählen sie Ihren Status:
 common#:#txt_account_type_other#:#Zugang für alle anderen
 common#:#txt_account_type_student#:#Student/in
 common#:#txt_fhkennung#:#FHKennung
+common#:#txt_registered#:#Sie haben sich erfolgreich bei ILIAS registriert.
 common#:#txt_registered_student#:#Sie haben sich erfolgreich bei ILIAS Registriert und erhalten eine Bestätigung per E-Mail. Als Passwort verwenden Sie bitte das Passwort welches zur FHKennung gehört.
 common#:#txt_registered_username#:#Ihr ILIAS Benutzername lautet:
 common#:#txt_register_maintenance#:#Die Registrierung ist von 3.00 - 4.00 Uhr aufgrund von Wartungsarbeiten nicht m&ouml;glich. Wir bitten um Verst&auml;ndnis.
@@ -128,47 +152,16 @@ dateplaner#:#cal_consultation_hours_for#:#Sprechstunden von
 meta#:#md_separated_by#:#Getrennt mit ,
 ps#:#ps_export_excel#:#Excel-Export starten
 pwassist#:#pwassist_enter_username_and_email#:#<h3>Achtung!</h3>Ab sofort loggen sich Studierende bitte <b><u>nur noch</u></b> mit ihrer <b><u>FHKennung</u></b>  und dem dazugehörigen Passwort in ILIAS ein. Falls Sie Ihr Passwort vergessen haben, klicken Sie bitte auf <a href="http://www.fh-dortmund.de/selbstverwaltung">http://www.fh-dortmund.de/selbstverwaltung</a><br><br>DozentInnen (nur FB 1, 2 und 4) und externe BenutzerInnen geben weiterhin ihren Benutzernamen (<b>vorname.nachname</b>) und die dazugehörige E-Mail-Adresse der FH (<b>Name@fh-dortmund.de</b>) ein. Anschließend nutzen Sie den Link in der Passwort-Unterstützungs Mail und setzen ein neues Passwort. Falls hierbei wider Erwarten Probleme auftauchen, wenden Sie sich bitte an %1$s.
-common#:#objs_xlvo#:#Live Votings
-common#:#objs_xavc#:#Adobe Meetings
-common#:#objs_xflc#:#Lernkarten-Trainings
-common#:#filename_special_characters#:#&nbsp;
-common#:#txt_registered#:#Sie haben sich erfolgreich bei ILIAS registriert.
-common#:#rep_robj_xlvo_fold_create_xlvo#:#Adobe Connect anlegen
-common#:#rep_robj_xflc_rbac_create_xflc#:#Lernkarten anlegen
-common#:#rep_robj_xlvo_rbac_create_xlvo#:#Live Voting anlegen
-common#:#rep_robj_xavc_rbac_create_xavc#:#Adobe Connect anlegen
-rbac#:#rbac_create_cld#:#Sciebo-Ordner erstellen
-cld#:#cld_add#:#Sciebo-Ordner erstellen
-cld#:#cld_edit_Settings#:#Sciebo Einstellungen
-cld#:#cld_file_not_existing_on_service#:#Datei existiert in Sciebo nicht:
-cld#:#cld_folder_already_existing_on_service#:#Ordner existiert bereits in Sciebo
-cld#:#cld_folder_not_existing_on_service#:#Ordner existiert nicht in Sciebo
-cld#:#cld_new#:#Neuen Sciebo Ordner hinzufügen
-cld#:#cld_no_service_active#:#Leider ist kein Cloud-Plugin aktiviert
-cld#:#cld_no_service_selected#:#Es wurde kein Cloud-Dienst ausgewählt.
-cld#:#cld_only_owner_has_permission_to_change_root_path#:#Um die Privatsphäre des Besitzers des Sciebo-Ordners zu schützen, kann nur der Ersteller eines Sciebo-Objektes dessen Basisverzeichnis ändern.
-cld#:#cld_service_not_active#:#Der gewählte Cloud-Dienst ist nicht aktiv
-common#:#obj_cld#:#Sciebo-Ordner
-common#:#objs_cld#:#sciebo-Ordner
+rbac#:#cld_delete#:#Benutzer können Sciebo-Ordner löschen
 rbac#:#cld_delete_files#:#Benutzer können Dateien im Sciebo-Ordner löschen
 rbac#:#cld_delete_folders#:#Benutzer können Ordner im Sciebo-Ordner löschen
-rbac#:#cld_files_visible#:#Dateien im Sciebo-Ordner sind für die Benutzer sichtbar
-rbac#:#cld_folders_visible#:#Ordner im Sciebo-Ordner sind für die Benutzer sichtbar
-rbac#:#cld_folders_create#:#Ordner können im Sciebo-Ordner erstellt werden
-rbac#:#cld_visible#:#Sciebo-Ordner sichtbar
-rbac#:#cld_read#:#Benutzer können Sciebo-Ordner öffnen
-rbac#:#cld_write#:#Benutzer können Sciebo-Ordner Einstellungen bearbeiten
-rbac#:#cld_delete#:#Benutzer können Sciebo-Ordner löschen
-rbac#:#cld_permission#:#Benutzer können Rechteeinstellungen bearbeiten
-rbac#:#cld_upload#:#Benutzer können Dateien in den Sciebo-Ordner laden
 rbac#:#cld_download#:#Benutzer können Dateien vom Sciebo-Ordner herunterladen
-cld#:#cld_object_added#:#Ein neuen Sciebo Ordner wurde hinzugefügt
-cld#:#cld_auth_failed_no_object_created#:#Authentifzierung fehlgeschlagen. Es wurde kein Sciebo-Ordner angelegt.
-common#:#file_suffix_default_white#:#Dateiendungen: Positivliste (Ausgangsliste)
-common#:#file_suffix_default_white_info#:#Voreingestellte Ausgangsliste für akzeptierte Dateiendungen.
-common#:#file_suffix_custom_black#:#Dateiendungen: Negativliste (Anpassungen)
-common#:#file_suffix_custom_black_info#:#Diese Dateiendungen werden aus der obigen Positivliste entfernt.
-common#:#file_suffix_custom_white#:#Dateiendungen: Positivliste (Anpassungen)
-common#:#file_suffix_custom_white_info#:#Diese Dateiendungen werden der obigen Positivliste hinzugefügt.
-common#:#file_suffix_overall_white#:#Effektive Positivliste
-common#:#file_suffix_overall_white_info#:#Dies ist die endgültige Liste akzeptierter Dateiendungen.
+rbac#:#cld_files_visible#:#Dateien im Sciebo-Ordner sind für die Benutzer sichtbar
+rbac#:#cld_folders_create#:#Ordner können im Sciebo-Ordner erstellt werden
+rbac#:#cld_folders_visible#:#Ordner im Sciebo-Ordner sind für die Benutzer sichtbar
+rbac#:#cld_permission#:#Benutzer können Rechteeinstellungen bearbeiten
+rbac#:#cld_read#:#Benutzer können Sciebo-Ordner öffnen
+rbac#:#cld_upload#:#Benutzer können Dateien in den Sciebo-Ordner laden
+rbac#:#cld_visible#:#Sciebo-Ordner sichtbar
+rbac#:#cld_write#:#Benutzer können Sciebo-Ordner Einstellungen bearbeiten
+rbac#:#rbac_create_cld#:#Sciebo-Ordner erstellen
