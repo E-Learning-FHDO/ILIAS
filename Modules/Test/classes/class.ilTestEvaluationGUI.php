@@ -1026,7 +1026,7 @@ class ilTestEvaluationGUI extends ilTestServiceGUI
 		$testPassesSelector->setActiveId($testSession->getActiveId());
 		$testPassesSelector->setLastFinishedPass($testSession->getLastFinishedPass());
 
-		$passOverViewTableGUI = $this->buildPassOverviewTableGUI($this);
+		$passOverViewTableGUI = $this->buildPassOverviewTableGUI($this, 'outParticipantsResultsOverview');
 		$passOverViewTableGUI->setActiveId($testSession->getActiveId());
 		$passOverViewTableGUI->setResultPresentationEnabled(true);
 		$passOverViewTableGUI->setPassDetailsCommand('outParticipantsPassDetails');
@@ -1356,7 +1356,7 @@ class ilTestEvaluationGUI extends ilTestServiceGUI
 		$testPassesSelector->setActiveId($testSession->getActiveId());
 		$testPassesSelector->setLastFinishedPass($testSession->getLastFinishedPass());
 
-		$passOverViewTableGUI = $this->buildPassOverviewTableGUI($this);
+		$passOverViewTableGUI = $this->buildPassOverviewTableGUI($this, 'outUserResultsOverview');
 		$passOverViewTableGUI->setActiveId($testSession->getActiveId());
 		$passOverViewTableGUI->setResultPresentationEnabled(true);
 		if($passDetailsEnabled)
@@ -1470,7 +1470,7 @@ class ilTestEvaluationGUI extends ilTestServiceGUI
 			$testPassesSelector->setActiveId($testSession->getActiveId());
 			$testPassesSelector->setLastFinishedPass($testSession->getLastFinishedPass());
 			
-			$passOverViewTableGUI = $this->buildPassOverviewTableGUI($this);
+			$passOverViewTableGUI = $this->buildPassOverviewTableGUI($this, 'outUserListOfAnswerPasses');
 			$passOverViewTableGUI->setActiveId($testSession->getActiveId());
 			$passOverViewTableGUI->setResultPresentationEnabled(false);
 			$passOverViewTableGUI->setPassDetailsCommand('outUserListOfAnswerPasses');
