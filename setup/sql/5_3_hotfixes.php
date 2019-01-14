@@ -379,3 +379,20 @@ if ($media_cont_mig == 1)
 	$setting->set('sty_media_cont_mig', 2);
 }
 ?>
+<#24>
+<?php
+	$ilDB->update("style_data", array(
+			"uptodate" => array("integer", 0)
+		), array(
+			"1" => array("integer", 1)
+		));
+?>
+<#25>
+<?php
+$ilCtrlStructureReader->getStructure();
+?>
+<#26>
+<?php
+require_once 'Services/Migration/DBUpdate_3560/classes/class.ilDBUpdateNewObjectType.php';
+ilDBUpdateNewObjectType::applyInitialPermissionGuideline('iass', true, false);
+?>
