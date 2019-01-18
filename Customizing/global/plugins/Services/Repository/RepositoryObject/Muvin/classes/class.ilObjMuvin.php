@@ -219,7 +219,7 @@ class ilObjMuvin extends ilObjectPlugin
 	{
 		global $ilDB;
 		
-		$this->documentService = new DocumentService ();
+		//$this->documentService = new DocumentService ();
 		
 		// find the MUVIN Object ID
 		$set = $ilDB->query("SELECT * FROM rep_robj_xmvn_data ".
@@ -234,7 +234,7 @@ class ilObjMuvin extends ilObjectPlugin
 				" id = ".$ilDB->quote($this->getId(), "integer")
 				);
         
-        @$this->documentService->DeleteDocument($muvinDocID);
+        //@$this->documentService->DeleteDocument($muvinDocID);
         
         /*
         if($this->documentService->DeleteDocument($muvinDocID))
