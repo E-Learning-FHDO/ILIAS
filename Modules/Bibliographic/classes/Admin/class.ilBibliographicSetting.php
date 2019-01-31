@@ -108,6 +108,12 @@ class ilBibliographicSetting extends ActiveRecord {
 				} else {
 					$attr = array( "title", "author", "year", "number", "volume" );
 				}
+
+				$bibtex_url = false;
+
+				if(isset($attributes[$prefix . "url"]))
+				    $bibtex_url = $attributes[$prefix . "url"];
+
 				break;
 			case 'ris':
 				$prefix = "ris_" . strtolower($entry->getType()) . "_";
@@ -155,6 +161,9 @@ class ilBibliographicSetting extends ActiveRecord {
 
 		// return full link
 		$full_link = $this->getUrl() . $url_params;
+		
+		if($bibtex_url)
+		    return strip_tags($bibtex_url);
 
 		return $full_link;
 	}
