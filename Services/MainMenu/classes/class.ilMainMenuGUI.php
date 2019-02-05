@@ -404,15 +404,6 @@ class ilMainMenuGUI
 			$this->tpl->setVariable("TXT_HEADER_BACK", $this->topbar_back_caption
 				? $this->topbar_back_caption
 				: $lng->txt("back"));
-			 // JAN
-            // hide logo in top bar
-            $this->tpl->setVariable("TOPBAR_CLASS", " hideLogo");
-			$this->tpl->parseCurrentBlock();		
-            
-            //JAN, patch to hide header icon on reduced view (portfolio)
-            $this->tpl->setVariable("HEADER_ICON",ilUtil::getImagePath("HeaderIcon.svg"));
-            $this->tpl->setVariable("HEADER_HIDE",' hideHeaderIcon');
-            // end patch			
 		}
 
 		$this->tpl->setVariable("LOCATION_STYLESHEET", ilUtil::getStyleSheetLocation());
@@ -428,8 +419,8 @@ class ilMainMenuGUI
         if($this->getMode() == self::MODE_TOPBAR_ONLY)
         {
             //JAN, patch to hide header icon on reduced view (portfolio)
-            $this->tpl->setVariable("HEADER_ICON",ilUtil::getImagePath("HeaderIcon.svg"));
-            $this->tpl->setVariable("HEADER_HIDE",' hideHeaderIcon');
+            //$this->tpl->setVariable("HEADER_ICON",ilUtil::getImagePath("HeaderIcon.svg"));
+            //$this->tpl->setVariable("HEADER_HIDE",' hideHeaderIcon');
             // end patch
         }
 		
