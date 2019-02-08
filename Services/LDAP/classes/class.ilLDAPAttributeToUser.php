@@ -376,6 +376,8 @@ class ilLDAPAttributeToUser
 						{
 							case 'n':
 							case 'neutral':
+                            case '0':
+                            case '9':
 								$this->writer->xmlElement('Gender', array(), 'n');
 								break;
 
