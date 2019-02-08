@@ -374,17 +374,23 @@ class ilLDAPAttributeToUser
 					case 'gender':
 						switch(strtolower($value))
 						{
+							case 'n':
+							case 'neutral':
+								$this->writer->xmlElement('Gender', array(), 'n');
+								break;
+
 							case 'm':
 							case 'male':
                             case '1':
 								$this->writer->xmlElement('Gender',array(),'m');
+								$this->writer->xmlElement('Gender', array(), 'm');
 								break;
-							
+
 							case 'f':
 							case 'female':
                             case '2':
 							default:
-								$this->writer->xmlElement('Gender',array(),'f');
+								$this->writer->xmlElement('Gender', array(), 'f');
 								break;
 								
 						}
