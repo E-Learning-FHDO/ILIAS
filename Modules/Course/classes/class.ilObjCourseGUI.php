@@ -1436,12 +1436,13 @@ class ilObjCourseGUI extends ilContainerGUI
 		$mem->setChecked($this->object->getShowMembers());
 		$mem->setInfo($this->lng->txt('crs_show_members_info'));
 		$form->addItem($mem);
-		
+
+		/* JAN: REMOVED Privacy concerns
 		$part_list = new ilCheckboxInputGUI($this->lng->txt('crs_show_member_export'), 'show_members_export');
 		$part_list->setChecked($this->object->getShowMembersExport());
 		$part_list->setInfo($this->lng->txt('crs_show_member_export_info'));
 		$mem->addSubItem($part_list);
-		
+		*/
 
 		// Show members type
 		$mail_type = new ilRadioGroupInputGUI($this->lng->txt('crs_mail_type'), 'mail_type');

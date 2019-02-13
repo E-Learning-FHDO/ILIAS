@@ -948,10 +948,12 @@ class ilMembershipGUI
 			{
 				$this->ctrl->setParameter($this, "back_cmd", $a_back_cmd);
 			}
-			$toolbar->addButton(
+			/* JAN: REMOVED Privacy concerns
+			    $toolbar->addButton(
 				$this->lng->txt($this->getParentObject()->getType().'_print_list'),
 				$this->ctrl->getLinkTarget($this, 'printForMembersOutput')
 			);
+			*/
 		}
 	}
 
