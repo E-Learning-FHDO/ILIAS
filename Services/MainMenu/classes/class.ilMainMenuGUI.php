@@ -1171,6 +1171,9 @@ class ilMainMenuGUI
 
 		$main_tpl = $this->main_tpl;
 
+		if ($DIC->user()->isAnonymous() || (int)$DIC->user()->getId() === 0) {
+			return;
+		}
 
 		$DIC->language()->loadLanguageModule("background_tasks");
 		$factory = $DIC->ui()->factory();

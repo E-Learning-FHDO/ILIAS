@@ -642,6 +642,8 @@ class ilObjTestGUI extends ilObjectGUI
 				require_once 'Modules/TestQuestionPool/classes/class.ilAssQuestionHintsGUI.php';
 				$gui = new ilAssQuestionHintsGUI($questionGUI);
 				
+				global $DIC; /* @var ILIAS\DI\Container $DIC */
+				
 				$gui->setEditingEnabled(
 					$DIC->access()->checkAccess('write', '', $this->object->getRefId())
 				);
@@ -3260,7 +3262,7 @@ class ilObjTestGUI extends ilObjectGUI
 		if( $isPdfDeliveryRequest )
 		{
 			require_once 'class.ilTestPDFGenerator.php';
-			ilTestPDFGenerator::generatePDF($template->get(), ilTestPDFGenerator::PDF_OUTPUT_DOWNLOAD, $this->object->getTitle(), PDF_PRINT_VIEW_QUESTIONS);
+			ilTestPDFGenerator::generatePDF($template->get(), ilTestPDFGenerator::PDF_OUTPUT_DOWNLOAD, $this->object->getTitleFilenameCompliant(), PDF_PRINT_VIEW_QUESTIONS);
 		}
 		else
 		{
@@ -3339,7 +3341,7 @@ class ilObjTestGUI extends ilObjectGUI
 		if($isPdfDeliveryRequest)
 		{
 			require_once 'class.ilTestPDFGenerator.php';
-			ilTestPDFGenerator::generatePDF($template->get(), ilTestPDFGenerator::PDF_OUTPUT_DOWNLOAD, $this->object->getTitle(), PDF_PRINT_VIEW_QUESTIONS);
+			ilTestPDFGenerator::generatePDF($template->get(), ilTestPDFGenerator::PDF_OUTPUT_DOWNLOAD, $this->object->getTitleFilenameCompliant(), PDF_PRINT_VIEW_QUESTIONS);
 		}
 		else
 		{
