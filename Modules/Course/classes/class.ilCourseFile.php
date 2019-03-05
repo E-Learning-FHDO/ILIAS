@@ -151,7 +151,21 @@ class ilCourseFile
 	{
 		if(is_object($this->fss_storage))
 		{
-			return $this->fss_storage->getInfoDirectory().'/'.$this->getFileId();
+			//return $this->fss_storage->getInfoDirectory().'/'.$this->getFileId();
+
+            // fau: fixCourseFileUpload - use the uploaded file extension
+            $pi = pathinfo($this->getFilename());
+            $suffix = empty($pi['extension']) ? '' : '.' . $pi['extension'];
+            if (is_file($this->fss_storage->getInfoDirectory().'/'.$this->getFileId().$suffix))
+            {
+                // new uploads
+                return $this->fss_storage->getInfoDirectory().'/'.$this->getFileId().$suffix;
+            }
+            elseif (is_file($this->fss_storage->getInfoDirectory().'/'.$this->getFileId()))
+            {
+                // older uploads
+                return $this->fss_storage->getInfoDirectory().'/'.$this->getFileId();
+            }
 		}
 		return false;
 	}
@@ -221,10 +235,16 @@ class ilCourseFile
 
 		if($a_upload)
 		{
+            // fau: fixCourseFileUpload - use the uploaded file extension
+            $pi = pathinfo($this->getFilename());
+            $suffix = empty($pi['extension']) ? '' : '.' . $pi['extension'];
+
 			// now create file
 			ilUtil::moveUploadedFile($this->getTemporaryName(),
 				$this->getFileName(),
-				$this->fss_storage->getInfoDirectory().'/'.$this->getFileId());
+				//$this->fss_storage->getInfoDirectory().'/'.$this->getFileId());
+                $this->fss_storage->getInfoDirectory().'/'.$this->getFileId().$suffix);
+                // fau.
 			
 		}
 		return true;
