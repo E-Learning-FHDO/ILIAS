@@ -1749,6 +1749,7 @@ echo "ilTabl2GUI->addSelectionButton() has been deprecated with 4.2. Please try 
 		$data = $this->getData();
 		if($this->dataExists())
 		{
+
 			// sort
 			if (!$this->getExternalSorting() && $this->enabled["sort"])
 			{
@@ -1778,11 +1779,10 @@ echo "ilTabl2GUI->addSelectionButton() has been deprecated with 4.2. Please try 
 			{
 			    $hideEntry = 0;
 
-                if(isset($ilIliasIniFile) && isset($set->user->login) &&
-                    $ilIliasIniFile->variableExists("fhdo", "cse_login") &&
-                    $ilIliasIniFile->readVariable("fhdo","cse_login") == $set->user->login)
+                if(isset($ilIliasIniFile) && isset($set['usr_id']) &&
+                    $ilIliasIniFile->variableExists("fhdo", "cse_id") &&
+                    $ilIliasIniFile->readVariable("fhdo","cse_id") == $set['usr_id'])
                     $hideEntry = 1;
-
 
 			    if($hideEntry == 0) {
                     $this->tpl->setCurrentBlock("tbl_content");
