@@ -1779,7 +1779,7 @@ echo "ilTabl2GUI->addSelectionButton() has been deprecated with 4.2. Please try 
 			{
 			    $hideEntry = 0;
 
-                if(isset($ilIliasIniFile) && isset($set['usr_id']) &&
+                if(!is_object($set) && isset($ilIliasIniFile) && isset($set['usr_id']) &&
                     $ilIliasIniFile->variableExists("fhdo", "cse_id") &&
                     $ilIliasIniFile->readVariable("fhdo","cse_id") == $set['usr_id'])
                     $hideEntry = 1;
