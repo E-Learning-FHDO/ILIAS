@@ -48,7 +48,18 @@ class ilLoggingErrorFileStorage {
 	 * @return string
 	 */
 	protected function pageHeader() {
-		return "";
+	    global $ilIliasIniFile;
+
+	    // JAN - add PHP worker
+
+        if($ilIliasIniFile->variableExists("fhdo","server"))
+            $fhdoServerId = $ilIliasIniFile->readVariable("fhdo","server");
+
+	    $header = "PHP Worker: " . $fhdoServerId . "\n\n";
+
+	    // JAN - end
+
+		return $header;
 	}
 
 	/**

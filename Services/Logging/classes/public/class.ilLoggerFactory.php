@@ -26,7 +26,8 @@ use Monolog\Handler\FingersCrossed\ErrorLevelActivationStrategy;
  */
 class ilLoggerFactory
 {
-	const DEFAULT_FORMAT  = "[%suid%] [%datetime%] %channel%.%level_name%: %message% %context% %extra%\n";
+    // JAN - added server for record
+	const DEFAULT_FORMAT  = "[%suid%] [%datetime%] [%server%] %channel%.%level_name%: %message% %context% %extra%\n";
 	
 	const ROOT_LOGGER = 'root';
 	const COMPONENT_ROOT = 'log_root';
@@ -248,6 +249,19 @@ class ilLoggerFactory
 			$record['suid'] = substr(session_id(),0,5);
 			return $record;
 		});
+
+        // JAN add PHP Worker
+        $logger->pushProcessor(function ($record) {
+            global $ilIliasIniFile;
+
+            if($ilIliasIniFile->variableExists("fhdo","server"))
+                $fhdoServerId = $ilIliasIniFile->readVariable("fhdo","server");
+
+            $record['server'] = $fhdoServerId;
+            return $record;
+        });
+        // JAN - end
+
 
 		// append trace 
 		include_once './Services/Logging/classes/extensions/class.ilTraceProcessor.php';
