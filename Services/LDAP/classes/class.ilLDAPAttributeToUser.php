@@ -247,7 +247,7 @@ class ilLDAPAttributeToUser
 				$this->writer->xmlStartTag('User',array('Id' => $usr_id,'Action' => 'Update'));
 				$this->writer->xmlElement('Login',array(),$user['ilInternalAccount']);
 				$this->writer->xmlElement('ExternalAccount',array(),$external_account);
-				$this->writer->xmlElement('AuthMode',array(type => $this->getNewUserAuthMode()),null);
+				$this->writer->xmlElement('AuthMode',array('type' => $this->getNewUserAuthMode()),null);
 
 		                $this->writer->xmlElement('Active',array(),"true");
 		                $this->writer->xmlElement('TimeLimitOwner',array(),7);
