@@ -1082,7 +1082,7 @@ class ilInitialisation
 	public static function handleErrorReporting()
 	{		
 		// push the error level as high as possible / sane
-		error_reporting(E_ALL & ~E_NOTICE);
+		error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT);
 		
 		// see handleDevMode() - error reporting might be overwritten again
 		// but we need the client ini first
@@ -1104,10 +1104,10 @@ class ilInitialisation
 		
 		
 		// error handler 
-		self::initGlobal("ilErr", "ilErrorHandling", 
+		self::initGlobal("ilErr", "ilErrorHandling",
 			"./Services/Init/classes/class.ilErrorHandling.php");
 		$ilErr->setErrorHandling(PEAR_ERROR_CALLBACK, array($ilErr, 'errorHandler'));		
-		
+
 		// :TODO: obsolete?
 		// PEAR::setErrorHandling(PEAR_ERROR_CALLBACK, array($ilErr, "errorHandler"));
 					

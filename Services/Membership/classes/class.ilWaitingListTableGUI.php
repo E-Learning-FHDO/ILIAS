@@ -246,6 +246,8 @@ class ilWaitingListTableGUI extends ilTable2GUI
 	 */
 	public function readUserData()
 	{
+	    global $ilLog;
+
 		$this->determineOffsetAndOrder();
 
 		include_once './Services/User/classes/class.ilUserQuery.php';
@@ -301,6 +303,13 @@ class ilWaitingListTableGUI extends ilTable2GUI
 
 		// merge course data
 		$course_user_data = $this->getParentObject()->readMemberData($usr_ids,array());
+
+		//$ilLog->write(__METHOD__ . ': ' . print_r($course_user_data,true));
+        //$ilLog->write(__METHOD__ . ': ' . 'ladida');
+        ilLoggerFactory::getLogger('mem')->dump($course_user_data);
+        ilLoggerFactory::getLogger('mem')->dump($course_user_data);
+
+
 		$a_user_data = array();
 		foreach((array) $usr_data['set'] as $ud)
 		{			
