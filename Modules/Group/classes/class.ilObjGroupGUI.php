@@ -870,27 +870,27 @@ class ilObjGroupGUI extends ilContainerGUI
 		$this->editInfoObject();
 		return true;
 	}
-	
+
 	/////////////////////////////////////////////////////////// Member section /////////////////////
 	public function readMemberData($ids,$selected_columns = null)
 	{
-        global $ilIliasIniFile;
+		global $ilIliasIniFile;
 
 		include_once('./Services/PrivacySecurity/classes/class.ilPrivacySettings.php');
 		$privacy = ilPrivacySettings::_getInstance();
-		
+
 		include_once './Services/Tracking/classes/class.ilObjUserTracking.php';
-		$this->show_tracking = 
-			(ilObjUserTracking::_enabledLearningProgress() and 
-			ilObjUserTracking::_enabledUserRelatedData()
-		);
+		$this->show_tracking =
+			(ilObjUserTracking::_enabledLearningProgress() and
+				ilObjUserTracking::_enabledUserRelatedData()
+			);
 		if($this->show_tracking)
 		{
 			include_once('./Services/Object/classes/class.ilObjectLP.php');
 			$olp = ilObjectLP::getInstance($this->object->getId());
 			$this->show_tracking = $olp->isActive();
 		}
-		
+
 		if($this->show_tracking)
 		{
 			include_once 'Services/Tracking/classes/class.ilLPStatusWrapper.php';
@@ -898,14 +898,14 @@ class ilObjGroupGUI extends ilContainerGUI
 			$in_progress = ilLPStatusWrapper::_lookupInProgressForObject($this->object->getId());
 			$failed = ilLPStatusWrapper::_lookupFailedForObject($this->object->getId());
 		}
-		
+
 		if($privacy->enabledGroupAccessTimes())
 		{
 			include_once('./Services/Tracking/classes/class.ilLearningProgress.php');
 			$progress = ilLearningProgress::_lookupProgressByObjId($this->object->getId());
 		}
-		
-		$do_prtf = (is_array($selected_columns) && 
+
+		$do_prtf = (is_array($selected_columns) &&
 			in_array('prtf', $selected_columns) &&
 			is_array($ids));
 		if($do_prtf)
@@ -914,58 +914,60 @@ class ilObjGroupGUI extends ilContainerGUI
 			$all_prtf = ilObjPortfolio::getAvailablePortfolioLinksForUserIds($ids,
 				$this->ctrl->getLinkTarget($this, "members"));
 		}
-		
+
 		$profile_data = ilObjUser::_readUsersProfileData($ids);
 		foreach($ids as $usr_id)
 		{
-            if ($ilIliasIniFile->variableExists("fhdo","cse_id") &&
-            	$usr_id != $ilIliasIniFile->readVariable("fhdo", "cse_id"))
-            {
-                $name = ilObjUser::_lookupName($usr_id);
-                $tmp_data['firstname'] = $name['firstname'];
-                $tmp_data['lastname'] = $name['lastname'];
-                $tmp_data['login'] = ilObjUser::_lookupLogin($usr_id);
-                $tmp_data['notification'] = $this->object->members_obj->isNotificationEnabled($usr_id) ? 1 : 0;
-                $tmp_data['usr_id'] = $usr_id;
-                $tmp_data['login'] = ilObjUser::_lookupLogin($usr_id);
 
-                foreach ((array)$profile_data[$usr_id] as $field => $value) {
-                    $tmp_data[$field] = $value;
-                }
+			if ($ilIliasIniFile->variableExists("fhdo","cse_id") &&
+            	$usr_id != $ilIliasIniFile->readVariable("fhdo", "cse_id")) {
+				$name = ilObjUser::_lookupName($usr_id);
+				$tmp_data['firstname'] = $name['firstname'];
+				$tmp_data['lastname'] = $name['lastname'];
+				$tmp_data['login'] = ilObjUser::_lookupLogin($usr_id);
+				$tmp_data['notification'] = $this->object->members_obj->isNotificationEnabled($usr_id) ? 1 : 0;
+				$tmp_data['contact'] = $this->object->members_obj->isContact($usr_id) ? 1 : 0;
+				$tmp_data['usr_id'] = $usr_id;
+				$tmp_data['login'] = ilObjUser::_lookupLogin($usr_id);
 
-                if ($this->show_tracking) {
-                    if (in_array($usr_id, $completed)) {
-                        $tmp_data['progress'] = ilLPStatus::LP_STATUS_COMPLETED;
-                    } elseif (in_array($usr_id, $in_progress)) {
-                        $tmp_data['progress'] = ilLPStatus::LP_STATUS_IN_PROGRESS;
-                    } elseif (in_array($usr_id, $failed)) {
-                        $tmp_data['progress'] = ilLPStatus::LP_STATUS_FAILED;
-                    } else {
-                        $tmp_data['progress'] = ilLPStatus::LP_STATUS_NOT_ATTEMPTED;
-                    }
-                }
+				foreach ((array)$profile_data[$usr_id] as $field => $value) {
+					$tmp_data[$field] = $value;
+				}
 
-                if ($privacy->enabledGroupAccessTimes()) {
-                    if (isset($progress[$usr_id]['ts']) and $progress[$usr_id]['ts']) {
-                        $tmp_data['access_time'] = ilDatePresentation::formatDate(
-                            $tmp_date = new ilDateTime($progress[$usr_id]['ts'], IL_CAL_UNIX));
-                        $tmp_data['access_time_unix'] = $tmp_date->get(IL_CAL_UNIX);
-                    } else {
-                        $tmp_data['access_time'] = $this->lng->txt('no_date');
-                        $tmp_data['access_time_unix'] = 0;
-                    }
-                }
+				if ($this->show_tracking) {
+					if (in_array($usr_id, $completed)) {
+						$tmp_data['progress'] = ilLPStatus::LP_STATUS_COMPLETED;
+					} elseif (in_array($usr_id, $in_progress)) {
+						$tmp_data['progress'] = ilLPStatus::LP_STATUS_IN_PROGRESS;
+					} elseif (in_array($usr_id, $failed)) {
+						$tmp_data['progress'] = ilLPStatus::LP_STATUS_FAILED;
+					} else {
+						$tmp_data['progress'] = ilLPStatus::LP_STATUS_NOT_ATTEMPTED;
+					}
+				}
 
-                if ($do_prtf) {
-                    $tmp_data['prtf'] = $all_prtf[$usr_id];
-                }
+				if ($privacy->enabledGroupAccessTimes()) {
+					if (isset($progress[$usr_id]['ts']) and $progress[$usr_id]['ts']) {
+						$tmp_data['access_time'] = ilDatePresentation::formatDate(
+							$tmp_date = new ilDateTime($progress[$usr_id]['ts'], IL_CAL_UNIX));
+						$tmp_data['access_time_unix'] = $tmp_date->get(IL_CAL_UNIX);
+					} else {
+						$tmp_data['access_time'] = $this->lng->txt('no_date');
+						$tmp_data['access_time_unix'] = 0;
+					}
+				}
 
-                $members[$usr_id] = $tmp_data;
-            }
-            return $members ? $members : array();
-        }
+				if ($do_prtf) {
+					$tmp_data['prtf'] = $all_prtf[$usr_id];
+				}
+
+				$members[$usr_id] = $tmp_data;
+			}
+		}
+		return $members ? $members : array();
 	}
-	
+
+
 	/**
 	* leave Group
 	* @access public

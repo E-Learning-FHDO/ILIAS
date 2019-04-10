@@ -254,7 +254,7 @@ class ilLoggerFactory
         $logger->pushProcessor(function ($record) {
             global $ilIliasIniFile;
 
-            if($ilIliasIniFile->variableExists("fhdo","server"))
+            if(!is_null($ilIliasIniFile) && $ilIliasIniFile->variableExists("fhdo","server"))
                 $fhdoServerId = $ilIliasIniFile->readVariable("fhdo","server");
 
             $record['server'] = $fhdoServerId;
