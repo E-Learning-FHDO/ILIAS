@@ -175,6 +175,15 @@ abstract class ilMailNotification
 	{
 		return (array) $this->attachments;
 	}
+	
+	/**
+	 * Get Automatic Mail message
+	 * @return $a_message
+	 */
+	public function getAutomaticNotification()
+	{
+		return $this->getLanguageText('automatic_mail_body');
+	}
 		
 	/**
 	 * Set lang modules
@@ -372,7 +381,7 @@ abstract class ilMailNotification
 			'',
 			'',
 			$this->getSubject(),
-			$this->getBody(),
+			$this->getAutomaticNotification() . $this->getBody(),
 			$this->getAttachments(),
 			$a_type
 		);

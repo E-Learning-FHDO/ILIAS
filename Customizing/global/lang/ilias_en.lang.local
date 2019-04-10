@@ -156,3 +156,5 @@ common#:#file_suffix_custom_white#:#Custom Suffix Whitelist
 common#:#file_suffix_custom_white_info#:#These suffixes will be added to the default whitelist.
 common#:#file_suffix_overall_white#:#Overal Suffix Whitelist
 common#:#file_suffix_overall_white_info#:#Resulting overall list of accepted file suffixes.
+common#:#automatic_mail_body#:#---------------------------------------------------------------------\nThis an automatic system message.\nPlease do not reply to this mail!\n---------------------------------------------------------------------\n\n
+
