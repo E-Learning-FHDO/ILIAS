@@ -618,20 +618,24 @@ class ilTable2GUI extends ilTableGUI
 			}*/
 		}
 
-		$this->row_data = $a_data;
-
         // set cse
         if (is_array($a_data) &&
             isset($ilIliasIniFile) &&
             $ilIliasIniFile->variableExists("fhdo","cse_id")) {
 
             foreach($a_data as $k => $v) {
-                if(array_key_exists('usr_id',$v))
+                if(is_array($v) && array_key_exists('usr_id',$v))
                 {
                     if ($v['usr_id'] == $ilIliasIniFile->readVariable("fhdo", "cse_id"))
                         $this->setCSEcourse(true);
                 }
             }
+        }
+
+		$this->row_data = $a_data;
+
+        if (!is_array($this->row_data)) {
+            $this->row_data = [];
         }
 
 	}
