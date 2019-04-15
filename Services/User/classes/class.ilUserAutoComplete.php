@@ -537,7 +537,8 @@ class ilUserAutoComplete
 	 */
 	protected function getOrderByPart()
 	{
-		return 'login ASC';
+		//return 'login ASC';
+        return 'lastname ASC, firstname ASC';
 	}
 
 	/**
@@ -573,7 +574,7 @@ class ilUserAutoComplete
 			}
 			if(self::SEARCH_TYPE_LIKE == $this->getSearchType())
 			{
-				$query_condition .= $ilDB->like($field, 'text', '%' . $query_string . '%');
+				$query_condition .= $ilDB->like($field, 'text',$query_string . '%');
 			}
 			else
 			{
