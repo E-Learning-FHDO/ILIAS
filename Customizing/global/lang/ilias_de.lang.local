@@ -173,3 +173,6 @@ common#:#file_suffix_custom_white_info#:#Diese Dateiendungen werden der obigen P
 common#:#file_suffix_overall_white#:#Effektive Positivliste
 common#:#file_suffix_overall_white_info#:#Dies ist die endgültige Liste akzeptierter Dateiendungen.
 common#:#automatic_mail_body#:#---------------------------------------------------------------------\nDies ist eine automatische Benachrichtigung.\nBitte antworten Sie nicht auf diese Mail!\n---------------------------------------------------------------------\n\n
+bibl#:#ris_default_db#:#Name der Datenbank
+bibl#:#ris_default_av#:#Standort
+bibl#:#ris_default_dp#:#Datenbank Anbieter

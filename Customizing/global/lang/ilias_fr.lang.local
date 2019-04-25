@@ -72,3 +72,6 @@ common#:#il_xavc_member#:#Adobe Connect Membre
 common#:#obj_xavc#:#Adobe Connect
 common#:#txt_registered#:#Vous avez enregistré avec succès à ILIAS.
 common#:#automatic_mail_body#:#---------------------------------------------------------------------\nIl s'agit d'une notification automatique.\nVeuillez ne pas répondre à ce mail!\n---------------------------------------------------------------------\n\n
+bibl#:#ris_default_db#:#Nom de la base de données
+bibl#:#ris_default_av#:#Lieu
+bibl#:#ris_default_dp#:#Fournisseur de base de données
