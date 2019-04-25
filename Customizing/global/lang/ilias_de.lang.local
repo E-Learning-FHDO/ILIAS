@@ -176,3 +176,7 @@ common#:#automatic_mail_body#:#-------------------------------------------------
 bibl#:#ris_default_db#:#Name der Datenbank
 bibl#:#ris_default_av#:#Standort
 bibl#:#ris_default_dp#:#Datenbank Anbieter
+bibl#:#ris_default_ed#:#Herausgeber*in
+bibl#:#ris_default_sp#:#Startseite
+bibl#:#ris_default_is#:#Ausgabe
+bibl#:#ris_default_et#:#Ausgabe

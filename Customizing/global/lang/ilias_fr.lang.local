@@ -75,3 +75,7 @@ common#:#automatic_mail_body#:#-------------------------------------------------
 bibl#:#ris_default_db#:#Nom de la base de données
 bibl#:#ris_default_av#:#Lieu
 bibl#:#ris_default_dp#:#Fournisseur de base de données
+bibl#:#ris_default_ed#:#éditeur de harpe
+bibl#:#ris_default_sp#:#Ches-soi
+bibl#:#ris_default_is#:#Numéro
+bibl#:#ris_default_et#:#Numéro

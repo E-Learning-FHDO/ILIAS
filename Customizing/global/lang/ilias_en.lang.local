@@ -160,3 +160,7 @@ common#:#automatic_mail_body#:#-------------------------------------------------
 bibl#:#ris_default_db#:#Name of Database
 bibl#:#ris_default_av#:#Location
 bibl#:#ris_default_dp#:#Datenbase Provider
+bibl#:#ris_default_ed#:#Editor
+bibl#:#ris_default_sp#:#Startpage
+bibl#:#ris_default_is#:#Issue
+bibl#:#ris_default_et#:#Edition‚
