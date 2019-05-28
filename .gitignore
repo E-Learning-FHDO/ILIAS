@@ -19,6 +19,8 @@
 *.swp
 *.swo
 
+/fonts
+
 # Generated Files
 /ilias.ini.php
 /ilias.log
