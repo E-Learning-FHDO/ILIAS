@@ -176,19 +176,40 @@ class ilBibliographicSetting extends ActiveRecord {
 	 * @return string
 	 */
 	public function getButton(ilObjBibliographic $bibl_obj, ilBibliographicEntry $entry) {
-		if ($this->getImg()) {
-			$button = ilImageLinkButton::getInstance();
-			$button->setUrl($this->generateLibraryLink($entry, $bibl_obj->getFiletype()));
-			$button->setImage($this->getImg(), false);
-		} else {
-			$button = ilLinkButton::getInstance();
-			$button->setUrl($this->generateLibraryLink($entry, $bibl_obj->getFiletype()));
-			$button->setCaption('bibl_link_online');
-		}
 
-		$button->setTarget('_blank');
+	    // JAN - RiO - only generate button when it is a RiO imported list
+        $attributes = $entry->getAttributes();
+        $type = $entry->getFileType();
 
-		return $button->render();
+        switch($type) {
+            case 'bib':
+                $search_field = "bib_default_url";
+                break;
+            case 'ris':
+                $search_field = "ris_" . strtolower($entry->getType()) . "_" . "ur";
+                break;
+            }
+
+        // JAN - check if URL field is set & if it has the correct URL
+        if(isset($attributes[$search_field]) && stripos($attributes[$search_field], 'widgets.ebscohost.com/prod/customerspecific/s9218820') !== false) {
+            if ($this->getImg()) {
+                $button = ilImageLinkButton::getInstance();
+                $button->setUrl($this->generateLibraryLink($entry, $bibl_obj->getFiletype()));
+                $button->setImage($this->getImg(), false);
+            } else {
+                $button = ilLinkButton::getInstance();
+                $button->setUrl($this->generateLibraryLink($entry, $bibl_obj->getFiletype()));
+                $button->setCaption('bibl_link_online');
+            }
+
+            $button->setTarget('_blank');
+
+            return $button->render();
+        }
+
+        return '';
+
+
 	}
 
 
