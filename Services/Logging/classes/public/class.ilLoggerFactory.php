@@ -170,7 +170,6 @@ class ilLoggerFactory
 		{
 			return $this->loggers[$a_component_id];
 		}
-
 		$loggerNamePrefix = '';
 		if (defined('CLIENT_ID')) {
 			$loggerNamePrefix = CLIENT_ID . '_';
