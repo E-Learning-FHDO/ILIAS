@@ -19,3 +19,6 @@
 [submodule "ifv"]
 	path = ifv
 	url = ssh://git@git.ilias.fh-dortmund.de/jan/ifv.git
+[submodule "Customizing/global/plugins/Services/Repository/RepositoryObject/ViMP"]
+	path = Customizing/global/plugins/Services/Repository/RepositoryObject/ViMP
+	url = https://git.ilias.fh-dortmund.de/ilias-public/vimp-plugin.git
