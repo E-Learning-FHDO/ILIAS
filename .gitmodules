@@ -22,3 +22,4 @@
 [submodule "Customizing/global/plugins/Services/Repository/RepositoryObject/ViMP"]
 	path = Customizing/global/plugins/Services/Repository/RepositoryObject/ViMP
 	url = https://git.ilias.fh-dortmund.de/ilias-public/vimp-plugin.git
+	branch = custom-icon
