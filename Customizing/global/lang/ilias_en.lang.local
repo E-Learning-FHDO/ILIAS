@@ -164,3 +164,16 @@ bibl#:#ris_default_ed#:#Editor
 bibl#:#ris_default_sp#:#Startpage
 bibl#:#ris_default_is#:#Issue
 bibl#:#ris_default_et#:#Edition‚
+rep_robj_xvmp#:#rep_robj_xvmp_exception_message#:#A connection with the video server could not be established
+rep_robj_xvmp#:#rep_robj_xvmp_not_available_description#:#This video was not found on the video server, it may have been deleted from the platform.
+rep_robj_xvmp#:#rep_robj_xvmp_confirm_delete_text#:#Warning: this action will delete the video on the video server and make the video unavailable in every ILIAS object using it. Are you sure that you want to delete this video?
+rep_robj_xvmp#:#rep_robj_xvmp_object_title#:#Video-Object
+rep_robj_xvmp#:#rep_robj_xvmp_xvmp_new#:#Create new Video object
+rep_robj_xvmp#:#rep_robj_xvmp_cat_create_xvmp#:#Create Video
+rep_robj_xvmp#:#rep_robj_xvmp_crs_create_xvmp#:#Create Video
+rep_robj_xvmp#:#rep_robj_xvmp_fold_create_xvmp#:#Create Video
+rep_robj_xvmp#:#rep_robj_xvmp_grp_create_xvmp#:#Create Video
+rep_robj_xvmp#:#rep_robj_xvmp_root_create_xvmp#:#Create Video
+rep_robj_xvmp#:#rep_robj_xvmp_xvmp_visible#:#Visible: Video is visible
+rep_robj_xvmp#:#rep_robj_xvmp_xvmp_write#:#Edit Settings: User can edit content and settings of Video object
+rep_robj_xvmp#:#rep_robj_xvmp_xvmp_delete#:#Delete: User can delete Video object

@@ -180,3 +180,17 @@ bibl#:#ris_default_ed#:#Herausgeber*in
 bibl#:#ris_default_sp#:#Startseite
 bibl#:#ris_default_is#:#Ausgabe
 bibl#:#ris_default_et#:#Ausgabe
+rep_robj_xvmp#:#rep_robj_xvmp_exception_message#:#Es konnte keine Verbindung mit dem Video-Server hergestellt werden
+rep_robj_xvmp#:#rep_robj_xvmp_not_available_description#:#Dieses Video wurde auf dem Video-Server nicht gefunden. Möglicherweise wurde es von der Plattform entfernt.
+rep_robj_xvmp#:#rep_robj_xvmp_confirm_delete_text#:#Achtung: Durch diese Aktion wird das Video endgültig auf dem Video-Server gelöscht und kann in keinem ILIAS-Objekt mehr verwendet werden. Sind Sie sicher, dass Sie das Video löschen möchten?
+rep_robj_xvmp#:#rep_robj_xvmp_object_title#:#Video-Objekt
+rep_robj_xvmp#:#rep_robj_xvmp_xvmp_new#:#Neues Video-Objekt anlegen
+rep_robj_xvmp#:#rep_robj_xvmp_cat_create_xvmp#:#Video Erstellen
+rep_robj_xvmp#:#rep_robj_xvmp_crs_create_xvmp#:#Video Erstellen
+rep_robj_xvmp#:#rep_robj_xvmp_fold_create_xvmp#:#Video Erstellen
+rep_robj_xvmp#:#rep_robj_xvmp_grp_create_xvmp#:#Video Erstellen
+rep_robj_xvmp#:#rep_robj_xvmp_root_create_xvmp#:#Video Erstellen
+rep_robj_xvmp#:#rep_robj_xvmp_xvmp_visible#:#Anzeigen: Video ist sichtbar
+rep_robj_xvmp#:#rep_robj_xvmp_upload_video#:#Video hochladen
+rep_robj_xvmp#:#rep_robj_xvmp_edit_video#:#Video bearbeiten
+rep_robj_xvmp#:#rep_robj_xvmp_info_transcoding_short#:#Wird transkodiert
