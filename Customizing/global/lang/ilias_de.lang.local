@@ -194,3 +194,5 @@ rep_robj_xvmp#:#rep_robj_xvmp_xvmp_visible#:#Anzeigen: Video ist sichtbar
 rep_robj_xvmp#:#rep_robj_xvmp_upload_video#:#Video hochladen
 rep_robj_xvmp#:#rep_robj_xvmp_edit_video#:#Video bearbeiten
 rep_robj_xvmp#:#rep_robj_xvmp_info_transcoding_short#:#Wird transkodiert
+common#:#rep_robj_xvmp_obj_xvmp#:#Video
+common#:#rep_robj_xvmp_objs_xvmp#:#Videos
