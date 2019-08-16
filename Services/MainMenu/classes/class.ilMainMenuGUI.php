@@ -1098,7 +1098,6 @@ class ilMainMenuGUI
 
 	protected function populateWithOnScreenChat()
 	{
-		require_once 'Services/OnScreenChat/classes/class.ilOnScreenChat.php';
 		require_once 'Services/OnScreenChat/classes/class.ilOnScreenChatGUI.php';
 
 		ilOnScreenChatGUI::initializeFrontend();
