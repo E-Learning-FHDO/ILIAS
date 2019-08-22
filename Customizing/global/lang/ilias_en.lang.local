@@ -48,7 +48,7 @@ common#:#matriculation_exists#:#The matriculation number you are trying to regis
 common#:#ods_connectproblem#:#Right now we are experiencing problems with the connection to ODS. Please try again later.
 common#:#ods_error#:#Error durng login, please make sure you FHKennung and password are correct!
 common#:#ods_shortpass#:#You have entered your ODS password correctly, but it is too short for use with ILIAS. Please login to your ODS account and change you password to a longer one. After changing your password, please return to ILIAS an register again.
-common#:#referral_comment#:#Why do you need access to ILIAS?
+common#:#referral_comment#:#Admin Comment
 common#:#system_zeit#:#System time
 common#:#txt_account_type#:#Please choose your status:
 common#:#txt_account_type_other#:#Access without immatriculation

@@ -49,7 +49,7 @@ common#:#ods_shortpass#:#Sie haben Ihr ODS Passwort zwar richtig eingegeben, all
 common#:#print_no_page_selected#:#Es wurde weder eine Seite noch ein Kapitel zum Drucken ausgewählt.
 common#:#rbac_create_dbk#:#Digibib anlegen
 common#:#rbac_create_icrs#:#ILinc Kurs anlegen
-common#:#referral_comment#:#Warum benötigen Sie Zugang zu ILIAS?
+common#:#referral_comment#:#Admin Kommentar
 common#:#settings_for_all_members#:#Globale Einstellung für alle Kurs/Gruppen Mitglieder
 common#:#settings_per_users#:#Einstellungen pro Kurs/Gruppen Mitglieder
 common#:#system_zeit#:#Systemzeit
