@@ -196,3 +196,4 @@ rep_robj_xvmp#:#rep_robj_xvmp_edit_video#:#Video bearbeiten
 rep_robj_xvmp#:#rep_robj_xvmp_info_transcoding_short#:#Wird transkodiert
 common#:#rep_robj_xvmp_obj_xvmp#:#Video
 common#:#rep_robj_xvmp_objs_xvmp#:#Videos
+common#:#rep_robj_xvmp_rbac_create_xvmp#:#Video Erstellen
