@@ -25,15 +25,22 @@ if($_GET['password']!=$settings["csesecret"]){
 }
 
 //mit den gefundenen Werten zur DB verbinden
-mysql_connect($settings["host"],$settings["user"],$settings["pass"]);
-mysql_select_db($settings["name"]);
+$mysqli = new mysqli($settings['host'],$settings['user'],$settings['pass'], $settings['name']);
 
-$lookup=$_GET['lookup'];
 
-$res=mysql_query("SELECT DISTINCT usr_id from usr_data where active=1 AND matriculation='".mysql_real_escape_string($lookup)."'");
-if(mysql_num_rows($res)>0){
-	$z=mysql_fetch_row($res);
-	echo $z[0];
+$lookup=$_REQUEST['lookup'];
+//$res=mysql_query("SELECT DISTINCT usr_id from usr_data where active=1 AND matriculation='".mysql_real_escape_string($lookup)."'");
+$sql = "SELECT DISTINCT usr_id from usr_data where active=1 AND matriculation='"
+	.mysqli_real_escape_string($mysqli,$lookup)."'";
+$res=$mysqli->query($sql);
+
+if ($mysqli->connect_error) {
+	echo $mysqli->connect_error;
+}
+
+if(mysqli_num_rows($res) > 0){
+	$data = $res->fetch_array();
+	echo $data['usr_id'];
 }
 else{
 	echo "-1";
