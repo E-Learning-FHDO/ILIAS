@@ -233,15 +233,15 @@ class ilLDAPAttributeToUser
 			if($user['ilInternalAccount'])
 			{
 				$usr_id = ilObjUser::_lookupId($user['ilInternalAccount']);
-				$user_factory = new ilObjectFactory();
-		                $user_obj = $user_factory->getInstanceByObjId($usr_id, false);
+                $user_factory = new ilObjectFactory();
+                $user_obj = $user_factory->getInstanceByObjId($usr_id, false);
 
-		                if(!$user_obj instanceof ilObjUser)
-		                {
-		                       ilLoggerFactory::getLogger('ldap')->error('Cannot instantiate user with id:' . $usr_id);
-                		       continue;
-		                }
-				
+                if(!$user_obj instanceof ilObjUser)
+                {
+                    ilLoggerFactory::getLogger('ldap')->error('Cannot instantiate user with id:' . $usr_id);
+                    continue;
+                }
+
 				++$cnt_update;
 				// User exists
 				$this->writer->xmlStartTag('User',array('Id' => $usr_id,'Action' => 'Update'));
@@ -249,11 +249,11 @@ class ilLDAPAttributeToUser
 				$this->writer->xmlElement('ExternalAccount',array(),$external_account);
 				$this->writer->xmlElement('AuthMode',array('type' => $this->getNewUserAuthMode()),null);
 
-		                $this->writer->xmlElement('Active',array(),"true");
-		                $this->writer->xmlElement('TimeLimitOwner',array(),7);
-		                $this->writer->xmlElement('TimeLimitUnlimited',array(),$user_obj->getTimeLimitUnlimited());
+                $this->writer->xmlElement('Active',array(),"true");
+                $this->writer->xmlElement('TimeLimitOwner',array(),7);
+                $this->writer->xmlElement('TimeLimitUnlimited',array(),$user_obj->getTimeLimitUnlimited());
 
-				if($this->isModeActive(self::MODE_INITIALIZE_ROLES))
+                if($this->isModeActive(self::MODE_INITIALIZE_ROLES))
 				{
 					$this->parseRoleAssignmentsForCreation($external_account, $user);
 				}
@@ -268,19 +268,22 @@ class ilLDAPAttributeToUser
 				++$cnt_create;
 				// Create user
 				$this->writer->xmlStartTag('User',array('Action' => 'Insert'));
-				// $this->writer->xmlElement('Login',array(),ilAuthUtils::_generateLogin($external_account));
-                
-                                // begin-patch ldap_username
+				//$this->writer->xmlElement('Login',array(),ilAuthUtils::_generateLogin($external_account));
+
+				$this->parseRoleAssignmentsForCreation($external_account, $user);
+				$rules = $this->mapping->getRules();
+
+                // begin-patch ldap_username
                 $rules = $this->mapping->getRules();
 
-		        $this->writer->xmlElement('Active',array(),"true");
-		        $this->writer->xmlElement('TimeLimitOwner',array(),7);
-		        $this->writer->xmlElement('TimeLimitUnlimited',array(),1);
-		        $this->writer->xmlElement('TimeLimitFrom',array(),time());
-		        $this->writer->xmlElement('TimeLimitUntil',array(),time());
+                $this->writer->xmlElement('Active',array(),"true");
+                $this->writer->xmlElement('TimeLimitOwner',array(),7);
+                $this->writer->xmlElement('TimeLimitUnlimited',array(),1);
+                $this->writer->xmlElement('TimeLimitFrom',array(),time());
+                $this->writer->xmlElement('TimeLimitUntil',array(),time());
 
                 //$GLOBALS['ilLog']->write(__METHOD__.': Rules JAN: '.print_r($rules));
-                
+
                 foreach($rules as $field => $data)
                 {
                     if(!($value = $this->doMapping($user,$data)))
@@ -291,18 +294,18 @@ class ilLDAPAttributeToUser
                     switch($field)
                     {
                         case 'firstname':
-                        $firstname = $value;
-                        break;
+                            $firstname = $value;
+                            break;
                         case 'lastname':
-                        $lastname = $value;
-                        break;
+                            $lastname = $value;
+                            break;
                     }
                 }
                 $il_account = $firstname.'.'.$lastname;
                 include_once './Services/Utilities/classes/class.ilStr.php';
                 $il_account = ilStr::strToLower($il_account);
                 $uml = array('ä','ö','ü','ß','ñ','é','è','á','ó','ú','Ä','Ö','Ü','ç','å','ã','â', 'á', 'à', 'æ','À', 'Á', 'Â', 'Ã', 'Å', 'Æ','Ç','È','É','Ê','Ë', 'ğ', 'Ì', 'Í', 'Î', 'Ï','Ð', 'Ñ','Ò','Ó', 'Ô', 'Õ', 'Ø', 'Ù', 'Ú', 'Û', 'Ý','ì','í','î','ï','ò','ô','õ','ø','ù','û','ý','ÿ','\'','"','´');
-				$rep = array('ae','oe','ue','ss','n','e','e','a','o','u','Ae','Oe','Ue','c','a','a','a','a','a','a','A','A','A','A','A','Ae','C','E','E','E','E','g','I','I','I','I','D','N','O','O','O','O','O','U','U','U','Y','i','i','i','i','o','o','o','o','u','u','y','y','','','');
+                $rep = array('ae','oe','ue','ss','n','e','e','a','o','u','Ae','Oe','Ue','c','a','a','a','a','a','a','A','A','A','A','A','Ae','C','E','E','E','E','g','I','I','I','I','D','N','O','O','O','O','O','U','U','U','Y','i','i','i','i','o','o','o','o','u','u','y','y','','','');
                 $il_account = str_replace($uml, $rep, $il_account);
                 $il_account = str_replace(' ', '_', $il_account);
 
@@ -312,44 +315,25 @@ class ilLDAPAttributeToUser
                 $this->log->write('LDAP: Generated Username '.$il_account);
                 #$this->writer->xmlElement('Login',array(),ilAuthUtils::_generateLogin($external_account));
                 // end-patch ldap_username
-				
-				include_once './Services/LDAP/classes/class.ilLDAPRoleAssignmentRules.php';
-				foreach(ilLDAPRoleAssignmentRules::getAssignmentsForCreation(
-						$this->getServer()->getServerId(),
-						$external_account, 
-						$user) as $role_data)
-				{
-					$this->writer->xmlElement('Role',
-						array('Id' => $role_data['id'],
-								'Type' => $role_data['type'],
-								'Action' => $role_data['action']),'');
-				}
 
-				// begin-patch ldap_username
+                include_once './Services/LDAP/classes/class.ilLDAPRoleAssignmentRules.php';
+                foreach(ilLDAPRoleAssignmentRules::getAssignmentsForCreation(
+                    $this->getServer()->getServerId(),
+                    $external_account,
+                    $user) as $role_data)
+                {
+                    $this->writer->xmlElement('Role',
+                        array('Id' => $role_data['id'],
+                            'Type' => $role_data['type'],
+                            'Action' => $role_data['action']),'');
+                }
+
+                // begin-patch ldap_username
                 #$rules = $this->mapping->getRules();
                 // end-patch ldap_username
-
 			}
-            
-            // begin-patch ldap_email
-            /*$tempMail = '';
-            if(isset($user['fhdomailalias']) && strlen($user['fhdomailalias']) > 5 &&
-               stristr($user['fhdomailalias'],'@') !== FALSE)
-            {
-                $tempMail = $user['fhdomailalias'];
-            }
-            else
-            {
-                if(is_array($user['mail']))
-                {
-                    $tempMail = $this->_selectMail($user['mail']);
-                }
-            }
-            $this->log->write(__METHOD__.': MAIL: '.print_r($user['mail'],true));
-            $this->log->write(__METHOD__.': TempMail: '.$tempMail);
-            //$this->log->write(__METHOD__.': MAIL: '.print_r($tempMailArray,true));
-            */
-            // end-patch ldap_email
+
+
 
 			// only for new users. 
 			// If auth_mode is 'default' (ldap) this status should remain.
@@ -368,6 +352,8 @@ class ilLDAPAttributeToUser
 				{
 					continue;
 				}
+
+                //$this->log->write('LDAP - '.$field . ': '. $value);
 		
 				switch($field)
 				{
@@ -384,7 +370,6 @@ class ilLDAPAttributeToUser
 							case 'm':
 							case 'male':
                             case '1':
-								$this->writer->xmlElement('Gender',array(),'m');
 								$this->writer->xmlElement('Gender', array(), 'm');
 								break;
 
@@ -489,7 +474,7 @@ class ilLDAPAttributeToUser
 						
 				}
 			}
-            
+
             // JAN: fill required fields with '-' for ldap users
             $this->writer->xmlElement('Comment',array(),'-');
             $this->writer->xmlElement('Hobby',array(),'-');
@@ -497,7 +482,7 @@ class ilLDAPAttributeToUser
             //$this->log->write('Setting Tempmail: '.$tempMail);
             //$this->writer->xmlElement('Email',array(),$tempMail);
             // end-patch ldap_email
-            
+
 			$this->writer->xmlEndTag('User');
 		}
 		

@@ -48,7 +48,7 @@ class ilTable2GUI extends ilTableGUI
 	protected $ext_seg = false;
 	protected $context = "";
 
-	protected $mi_sel_buttons = null;
+	protected $mi_sel_buttons = [];
 	protected $disable_filter_hiding = false;
 	protected $selected_filter = false;
 	protected $top_commands = true;
@@ -65,7 +65,7 @@ class ilTable2GUI extends ilTableGUI
 	protected $open_form_tag = true;
 	protected $close_form_tag = true;
 
-	protected $export_formats;
+	protected $export_formats = [];
 	protected $export_mode;
 	protected $print_mode;
 
@@ -89,7 +89,7 @@ class ilTable2GUI extends ilTableGUI
 	 * @var string
 	 */
 	protected $row_selector_label;
-
+	protected $sel_buttons = [];
 	const FILTER_TEXT = 1;
 	const FILTER_SELECT = 2;
 	const FILTER_DATE = 3;
@@ -1753,7 +1753,6 @@ echo "ilTabl2GUI->addSelectionButton() has been deprecated with 4.2. Please try 
 		$data = $this->getData();
 		if($this->dataExists())
 		{
-
 			// sort
 			if (!$this->getExternalSorting() && $this->enabled["sort"])
 			{

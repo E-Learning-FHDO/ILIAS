@@ -155,7 +155,6 @@ class ilCourseFile
 	 */
 	function getAbsolutePath()
 	{
-
 		// workaround for "secured" files.
 		if(!$this->fss_storage instanceof \ilFSStorageCourse) {
 			return false;
@@ -236,10 +235,10 @@ class ilCourseFile
 
 		if($a_upload)
 		{
-            // now create file
-            ilUtil::moveUploadedFile($this->getTemporaryName(),
-                $this->getFileName(),
-                $this->fss_storage->getInfoDirectory().'/'.$this->getFileId());
+			// now create file
+			ilUtil::moveUploadedFile($this->getTemporaryName(),
+				$this->getFileName(),
+				$this->fss_storage->getInfoDirectory().'/'.$this->getFileId());
 			
 		}
 		return true;

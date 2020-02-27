@@ -948,22 +948,22 @@ class ilMembershipGUI
 			{
 				$this->ctrl->setParameter($this, "back_cmd", $a_back_cmd);
 			}
-			/* JAN: REMOVED Privacy concerns
-			    $toolbar->addButton(
-				$this->lng->txt($this->getParentObject()->getType().'_print_list'),
-				$this->ctrl->getLinkTarget($this, 'printForMembersOutput')
-			);
-			*/
-		}
-	}
+            /* JAN: REMOVED Privacy concerns
+            $toolbar->addButton(
+                $this->lng->txt($this->getParentObject()->getType().'_print_list'),
+                $this->ctrl->getLinkTarget($this, 'printForMembersOutput')
+            );
+            */
+        }
+    }
 
 
 
 
 
-	/**
-	 * Show mail to member toolbar button
-	 */
+    /**
+     * Show mail to member toolbar button
+     */
 	protected function showMailToMemberToolbarButton(ilToolbarGUI $toolbar, $a_back_cmd = null, $a_separator = false)
 	{
 		global $ilUser, $rbacsystem, $ilAccess;

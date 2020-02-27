@@ -150,7 +150,7 @@ class ilUsersGalleryGUI
 	 */
 	protected function populateTemplate(array $gallery_groups)
 	{
-        	global $ilIliasIniFile;
+	    global $ilIliasIniFile;
 		$buddylist = ilBuddyList::getInstanceByGlobalUser();
 		$tpl       = new ilTemplate('tpl.users_gallery.html', true, true, 'Services/User');
 
@@ -186,46 +186,43 @@ class ilUsersGalleryGUI
 		{
 			$group = new ilUsersGallerySortedUserGroup($group, new ilUsersGalleryUserCollectionPublicNameSorter());
 
-			foreach($group as $user)
-			{
+			foreach($group as $user) {
 
-                        if(isset($ilIliasIniFile) &&
-                            $ilIliasIniFile->variableExists("fhdo", "cse_id") &&
-                            $user->getAggregatedUser()->getId() != $ilIliasIniFile->readVariable("fhdo","cse_id"))
-		                {
-		                    $card = $this->factory->card($user->getPublicName());
-		                    $avatar = $this->factory->image()->standard($user->getAggregatedUser()->getPersonalPicturePath('big'), $user->getPublicName());
+                if (isset($ilIliasIniFile) &&
+                    $ilIliasIniFile->variableExists("fhdo", "cse_id") &&
+                    $user->getAggregatedUser()->getId() != $ilIliasIniFile->readVariable("fhdo", "cse_id"))
+                {
+                    $card = $this->factory->card($user->getPublicName());
+                    $avatar = $this->factory->image()->standard($user->getAggregatedUser()->getPersonalPicturePath('big'), $user->getPublicName());
 
-		                    $sections = [];
+                    $sections = [];
 
-		                    if(count($groups_with_highlight) > 0)
-		                    {
-		                        $card = $card->withHighlight($group->isHighlighted());
-		                    }
+                    if (count($groups_with_highlight) > 0) {
+                        $card = $card->withHighlight($group->isHighlighted());
+                    }
 
-		                    $sections[] = $this->factory->listing()->descriptive(
-		                        [
-		                            $this->lng->txt("username") => $user->getAggregatedUser()->getLogin(),
-		                            $this->lng->txt("crs_contact_responsibility") => $group->getLabel()
-		                        ]
-		                    );
+                    $sections[] = $this->factory->listing()->descriptive(
+                        [
+                            $this->lng->txt("username") => $user->getAggregatedUser()->getLogin(),
+                            $this->lng->txt("crs_contact_responsibility") => $group->getLabel()
+                        ]
+                    );
 
-		                    $this->addActionSection($user->getAggregatedUser(), $sections);
+                    $this->addActionSection($user->getAggregatedUser(), $sections);
 
-		                    if($user->hasPublicProfile())
-		                    {
-		                        $this->ctrl->setParameterByClass('ilpublicuserprofilegui', 'user', $user->getAggregatedUser()->getId());
-		                        $public_profile_url = $this->ctrl->getLinkTargetByClass('ilpublicuserprofilegui', 'getHTML');
+                    if ($user->hasPublicProfile()) {
+                        $this->ctrl->setParameterByClass('ilpublicuserprofilegui', 'user', $user->getAggregatedUser()->getId());
+                        $public_profile_url = $this->ctrl->getLinkTargetByClass('ilpublicuserprofilegui', 'getHTML');
 
-		                        $avatar = $avatar->withAction($public_profile_url);
-		                        $card = $card->withTitleAction($public_profile_url);
-		                    }
+                        $avatar = $avatar->withAction($public_profile_url);
+                        $card = $card->withTitleAction($public_profile_url);
+                    }
 
-		                    $card = $card->withImage($avatar)->withSections($sections);
+                    $card = $card->withImage($avatar)->withSections($sections);
 
-		                    $cards[] = $card;
-		                }
-			}
+                    $cards[] = $card;
+                }
+            }
 		}
 
 		$tpl->setVariable('GALLERY_HTML', $this->renderer->render($this->factory->deck($cards)));

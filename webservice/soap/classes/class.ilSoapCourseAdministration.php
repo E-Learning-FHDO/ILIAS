@@ -283,120 +283,120 @@ class ilSoapCourseAdministration extends ilSoapAdministration
 		include_once 'Modules/Course/classes/class.ilCourseParticipants.php';
 		
 		$course_members = ilCourseParticipants::_getInstanceByObjId($tmp_course->getId());
-		
+
         /* REMOVED BY JAN - FIX CSE LAST ADMIN PROBLEM
         if(!$course_members->checkLastAdmin(array($user_id)))
-		{
-			return $this->__raiseError('Cannot deassign last administrator from course','Server');
-		}
+        {
+            return $this->__raiseError('Cannot deassign last administrator from course','Server');
+        }
         */
 
-		$course_members->delete($user_id);
+        $course_members->delete($user_id);
 
-		return true;
-	}
-
-	
-	function isAssignedToCourse($sid,$course_id,$user_id)
-	{
-		$this->initAuth($sid);
-		$this->initIlias();
-
-		if(!$this->__checkSession($sid))
-		{
-			return $this->__raiseError($this->__getMessage(),$this->__getMessageCode());
-		}			
-		if(!is_numeric($course_id))
-		{
-			return $this->__raiseError('No valid course id given. Please choose an existing reference id of an ILIAS course',
-									   'Client');
-		}
-		global $rbacsystem;
-
-		if(($obj_type = ilObject::_lookupType(ilObject::_lookupObjId($course_id))) != 'crs')
-		{
-			$course_id = end($ref_ids = ilObject::_getAllReferences($course_id));
-			if(ilObject::_lookupType(ilObject::_lookupObjId($course_id)) != 'crs')
-			{
-				return $this->__raiseError('Invalid course id. Object with id "'. $course_id.'" is not of type "course"','Client');
-			}
-		}
-
-		if(ilObject::_lookupType($user_id) != 'usr')
-		{
-			return $this->__raiseError('Invalid user id. User with id "'. $user_id.' does not exist','Client');
-		}
-
-		if(!$tmp_course = ilObjectFactory::getInstanceByRefId($course_id,false))
-		{
-			return $this->__raiseError('Cannot create course instance!','Server');
-		}
-
-		if(!$rbacsystem->checkAccess('manage_members',$course_id))
-		{
-			return $this->__raiseError('Check access failed. No permission to write to course','Server');
-		}
-
-		include_once './Modules/Course/classes/class.ilCourseParticipants.php';
-		$crs_members = ilCourseParticipants::_getInstanceByObjId($tmp_course->getId());
-		
-		if($crs_members->isAdmin($user_id))
-		{
-			return IL_CRS_ADMIN;
-		}
-		if($crs_members->isTutor($user_id))
-		{
-			return IL_CRS_TUTOR;
-		}
-		if($crs_members->isMember($user_id))
-		{
-			return IL_CRS_MEMBER;
-		}
-
-		return "0";
-	}
+        return true;
+    }
 
 
-	function getCourseXML($sid,$course_id)
-	{
-		$this->initAuth($sid);
-		$this->initIlias();
+    function isAssignedToCourse($sid,$course_id,$user_id)
+    {
+        $this->initAuth($sid);
+        $this->initIlias();
 
-		if(!$this->__checkSession($sid))
-		{
-			return $this->__raiseError($this->__getMessage(),$this->__getMessageCode());
-		}			
-		if(!is_numeric($course_id))
-		{
-			return $this->__raiseError('No valid course id given. Please choose an existing reference id of an ILIAS course',
-									   'Client');
-		}
+        if(!$this->__checkSession($sid))
+        {
+            return $this->__raiseError($this->__getMessage(),$this->__getMessageCode());
+        }
+        if(!is_numeric($course_id))
+        {
+            return $this->__raiseError('No valid course id given. Please choose an existing reference id of an ILIAS course',
+                                       'Client');
+        }
+        global $rbacsystem;
 
-		global $rbacsystem;
+        if(($obj_type = ilObject::_lookupType(ilObject::_lookupObjId($course_id))) != 'crs')
+        {
+            $course_id = end($ref_ids = ilObject::_getAllReferences($course_id));
+            if(ilObject::_lookupType(ilObject::_lookupObjId($course_id)) != 'crs')
+            {
+                return $this->__raiseError('Invalid course id. Object with id "'. $course_id.'" is not of type "course"','Client');
+            }
+        }
 
-		$tmp_course = $this->checkObjectAccess($course_id, "crs", "read", true);
-		if ($this->isFault($tmp_course)) {
-		    return $tmp_course;
-		}
-		
-		/*if(($obj_type = ilObject::_lookupType(ilObject::_lookupObjId($course_id))) != 'crs')
-		{
-			$course_id = end($ref_ids = ilObject::_getAllReferences($course_id));
-			if(ilObject::_lookupType(ilObject::_lookupObjId($course_id)) != 'crs')
-			{
-				return $this->__raiseError('Invalid course id. Object with id "'. $course_id.'" is not of type "course"','Client');
-			}
-		}
+        if(ilObject::_lookupType($user_id) != 'usr')
+        {
+            return $this->__raiseError('Invalid user id. User with id "'. $user_id.' does not exist','Client');
+        }
 
-		if(!$tmp_course = ilObjectFactory::getInstanceByRefId($course_id,false))
-		{
-			return $this->__raiseError('Cannot create course instance!','Server');
-		}
+        if(!$tmp_course = ilObjectFactory::getInstanceByRefId($course_id,false))
+        {
+            return $this->__raiseError('Cannot create course instance!','Server');
+        }
 
-		if(!$rbacsystem->checkAccess('read',$course_id))
-		{
-			return $this->__raiseError('Check access failed. No permission to read course','Server');
-		}*/
+        if(!$rbacsystem->checkAccess('manage_members',$course_id))
+        {
+            return $this->__raiseError('Check access failed. No permission to write to course','Server');
+        }
+
+        include_once './Modules/Course/classes/class.ilCourseParticipants.php';
+        $crs_members = ilCourseParticipants::_getInstanceByObjId($tmp_course->getId());
+
+        if($crs_members->isAdmin($user_id))
+        {
+            return IL_CRS_ADMIN;
+        }
+        if($crs_members->isTutor($user_id))
+        {
+            return IL_CRS_TUTOR;
+        }
+        if($crs_members->isMember($user_id))
+        {
+            return IL_CRS_MEMBER;
+        }
+
+        return "0";
+    }
+
+
+    function getCourseXML($sid,$course_id)
+    {
+        $this->initAuth($sid);
+        $this->initIlias();
+
+        if(!$this->__checkSession($sid))
+        {
+            return $this->__raiseError($this->__getMessage(),$this->__getMessageCode());
+        }
+        if(!is_numeric($course_id))
+        {
+            return $this->__raiseError('No valid course id given. Please choose an existing reference id of an ILIAS course',
+                                       'Client');
+        }
+
+        global $rbacsystem;
+
+        $tmp_course = $this->checkObjectAccess($course_id, "crs", "read", true);
+        if ($this->isFault($tmp_course)) {
+            return $tmp_course;
+        }
+
+        /*if(($obj_type = ilObject::_lookupType(ilObject::_lookupObjId($course_id))) != 'crs')
+        {
+            $course_id = end($ref_ids = ilObject::_getAllReferences($course_id));
+            if(ilObject::_lookupType(ilObject::_lookupObjId($course_id)) != 'crs')
+            {
+                return $this->__raiseError('Invalid course id. Object with id "'. $course_id.'" is not of type "course"','Client');
+            }
+        }
+
+        if(!$tmp_course = ilObjectFactory::getInstanceByRefId($course_id,false))
+        {
+            return $this->__raiseError('Cannot create course instance!','Server');
+        }
+
+        if(!$rbacsystem->checkAccess('read',$course_id))
+        {
+            return $this->__raiseError('Check access failed. No permission to read course','Server');
+        }*/
 
 		include_once 'Modules/Course/classes/class.ilCourseXMLWriter.php';
 

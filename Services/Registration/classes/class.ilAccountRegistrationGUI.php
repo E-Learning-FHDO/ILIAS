@@ -128,7 +128,7 @@ class ilAccountRegistrationGUI
 				$code->setInfo($lng->txt("registration_code_optional_info"));
 			}
 			$this->form->addItem($code);
-            
+
             // JAN
             // begin-patch code_username
             // adds a hidden username field
@@ -189,7 +189,7 @@ class ilAccountRegistrationGUI
 		$up = new ilUserProfile();
 		$up->setMode(ilUserProfile::MODE_REGISTRATION);
 		$up->skipGroup("preferences");
-        
+
         // JAN
         // begin-patch code_username
         // skip default username field
@@ -324,7 +324,7 @@ class ilAccountRegistrationGUI
 					{
 						$valid_role = $role_id;
 					}
-                    
+
                     // JAN
                     // begin-patch code_username
                     // If code, generate username from first and lastname
@@ -337,7 +337,7 @@ class ilAccountRegistrationGUI
                     $rep = array('ae','oe','ue','ss','n','e','e','a','o','u','Ae','Oe','Ue','c','a','a','a','a','a','a','A','A','A','A','A','Ae','C','E','E','E','E','g','I','I','I','I','D','N','O','O','O','O','O','U','U','U','Y','i','i','i','i','o','o','o','o','u','u','y','y','','','');
                     $il_account = str_replace($uml, $rep, $il_account);
                     $il_account = str_replace(' ', '_', $il_account);
- 
+
                     include_once 'Services/User/classes/class.ilUserUtil.php';
                     $_POST['username'] = ilUserUtil::generateLogin($il_account);
                     // end-patch code_username
@@ -438,30 +438,34 @@ class ilAccountRegistrationGUI
 		{
 			ilUtil::sendInfo($lng->txt("registration_no_valid_role"));
 			$form_valid = false;
-		}			
+		}
 
-		        // JAN
+        // JAN
         // begin-patch code_username
         if(!$this->code_enabled) {
             // validate username
             $login_obj = $this->form->getItemByPostVar('username');
             $login = $this->form->getInput("username");
-            if (!ilUtil::isLogin($login)) {
+            if (!ilUtil::isLogin($login))
+            {
                 $login_obj->setAlert($lng->txt("login_invalid"));
                 $form_valid = false;
-            } else if (ilObjUser::_loginExists($login)) {
+            }
+            else if (ilObjUser::_loginExists($login))
+            {
                 $login_obj->setAlert($lng->txt("login_exists"));
                 $form_valid = false;
-            } else if ((int)$ilSetting->get('allow_change_loginname') &&
+            }
+            else if ((int)$ilSetting->get('allow_change_loginname') &&
                 (int)$ilSetting->get('reuse_of_loginnames') == 0 &&
-                ilObjUser::_doesLoginnameExistInHistory($login)
-            ) {
+                ilObjUser::_doesLoginnameExistInHistory($login))
+            {
                 $login_obj->setAlert($lng->txt('login_exists'));
                 $form_valid = false;
             }
         }
         // end-patch code_username;
- 
+
         // JAN DEBUG
         //echo 'DEBUG TEST';
         //print_r($_POST);
@@ -581,13 +585,12 @@ class ilAccountRegistrationGUI
 
 		$this->code_was_used = false;
 		if($this->code_enabled)
-		{		
-            
+		{
             $sh = new ilFormSectionHeaderGUI();
             //$sh->setTitle($lng->txt("registration_code"));
             $sh->setTitle($lng->txt("registration_code"));
             $this->form->addItem($sh);
-            
+
 			$code_local_roles = $code_has_access_limit = null;
 			
 			// #10853 - could be optional
@@ -832,12 +835,13 @@ class ilAccountRegistrationGUI
 			
 			$this->tpl->setCurrentBlock('activation');
 			$this->tpl->setVariable('TXT_REGISTERED', $lng->txt('txt_registered'));
-			$this->tpl->setVariable('TXT_REGISTERED_USERNAME', $lng->txt('txt_registered_username'));
+            $this->tpl->setVariable('TXT_REGISTERED_USERNAME', $lng->txt('txt_registered_username'));
+
 			$action = $GLOBALS['DIC']->ctrl()->getFormAction($this, 'login').'&target='. ilUtil::stripSlashes($_GET['target']);
 			$this->tpl->setVariable('FORMACTION', $action);
 			
 			$this->tpl->setVariable('TXT_LOGIN', $lng->txt('login_to_ilias'));
-			$this->tpl->setVariable('USERNAME_SHOW', $this->userObj->getLogin());
+            $this->tpl->setVariable('USERNAME_SHOW', $this->userObj->getLogin());
 			$this->tpl->parseCurrentBlock();
 		}
 		else if($this->registration_settings->getRegistrationType() == IL_REG_APPROVE)

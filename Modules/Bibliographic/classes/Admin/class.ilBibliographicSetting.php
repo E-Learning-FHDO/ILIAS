@@ -109,10 +109,10 @@ class ilBibliographicSetting extends ActiveRecord {
 					$attr = array( "title", "author", "year", "number", "volume" );
 				}
 
-				$bibtex_url = false;
+                $bibtex_url = false;
 
-				if(isset($attributes[$prefix . "url"]))
-				    $bibtex_url = $attributes[$prefix . "url"];
+                if(isset($attributes[$prefix . "url"]))
+                    $bibtex_url = $attributes[$prefix . "url"];
 
 				break;
 			case 'ris':
@@ -130,22 +130,22 @@ class ilBibliographicSetting extends ActiveRecord {
                         $attr = array( "ti", "t1", "au", "py", "is", "vl" );
                     }
                 }
-				break;
+                break;
 		}
-                
+
         if(strpos($this->getURL(), '?') !== false) {
             $url_params = "&";
         } else {
-		  $url_params = "?";
+            $url_params = "?";
         }
-        
+
 		if (sizeof($attr) == 1) {
 			if (($attr[0] == "doi") || ($attr[0] == "pmid")) {
 				$url_params .= "id=" . $this->formatAttribute($attr[0], $type, $attributes, $prefix) . "%3A" . $attributes[$prefix . $attr[0]];
 			} elseif ($attr[0] == "do") {
 				$url_params .= "id=" . $this->formatAttribute($attr[0], $type, $attributes, $prefix) . "i%3A" . $attributes[$prefix . $attr[0]];
             } elseif ($attr[0] == "id") {
-				$url_params .= "an=" . substr($this->formatAttribute($attr[0], $type, $attributes, $prefix),3) . urlencode($attributes[$prefix . $attr[0]]);
+                $url_params .= "an=" . substr($this->formatAttribute($attr[0], $type, $attributes, $prefix),3) . urlencode($attributes[$prefix . $attr[0]]);
 			}  else {
 				$url_params .= $this->formatAttribute($attr[0], $type, $attributes, $prefix) . "=" . urlencode($attributes[$prefix . $attr[0]]);
 			}} else {
@@ -159,13 +159,13 @@ class ilBibliographicSetting extends ActiveRecord {
 			}
 		}
 
-		// return full link
-		$full_link = $this->getUrl() . $url_params;
-		
-		if($bibtex_url)
-		    return strip_tags($bibtex_url);
+        // return full link
+        $full_link = $this->getUrl() . $url_params;
 
-		return $full_link;
+        if($bibtex_url)
+            return strip_tags($bibtex_url);
+
+        return $full_link;
 	}
 
 
@@ -176,8 +176,7 @@ class ilBibliographicSetting extends ActiveRecord {
 	 * @return string
 	 */
 	public function getButton(ilObjBibliographic $bibl_obj, ilBibliographicEntry $entry) {
-
-	    // JAN - RiO - only generate button when it is a RiO imported list
+        // JAN - RiO - only generate button when it is a RiO imported list
         $attributes = $entry->getAttributes();
         $type = $entry->getFileType();
 
@@ -188,7 +187,7 @@ class ilBibliographicSetting extends ActiveRecord {
             case 'ris':
                 $search_field = "ris_" . strtolower($entry->getType()) . "_" . "ur";
                 break;
-            }
+        }
 
         // JAN - check if URL field is set & if it has the correct URL
         if(isset($attributes[$search_field]) && stripos($attributes[$search_field], 'widgets.ebscohost.com/prod/customerspecific/s9218820') !== false) {
@@ -206,10 +205,6 @@ class ilBibliographicSetting extends ActiveRecord {
 
             return $button->render();
         }
-
-        return '';
-
-
 	}
 
 
