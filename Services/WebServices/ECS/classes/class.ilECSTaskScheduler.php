@@ -182,6 +182,14 @@ class ilECSTaskScheduler
     {
         include_once './Services/WebServices/ECS/classes/class.ilECSEvent.php';
 
+        // Create PID file for ECS tasks
+        $pid = getmypid();
+        $pidfile = '/tmp/ilias_ecs.pid';
+
+        $fh = fopen($pidfile, 'wb');
+        fwrite($fh, $pid);
+        fclose($fh);
+
         for ($i = 0;$i < self::MAX_TASKS;$i++) {
             if (!$event = $this->event_reader->shift()) {
                 $this->log->write(__METHOD__ . ': No more pending events found. DONE');
@@ -284,6 +292,16 @@ class ilECSTaskScheduler
             } else {
                 $this->log->write(__METHOD__ . ': Processing of event failed ' . $event['event_id']);
             }
+        }
+
+        // Delete PID file for ECS tasks
+        if (!unlink($pidfile))
+        {
+            $this->log->write(__METHOD__ .": $pidfile cannot be deleted");
+        }
+        else
+        {
+            $this->log->write(__METHOD__ .": $pidfile deleted");
         }
     }
     

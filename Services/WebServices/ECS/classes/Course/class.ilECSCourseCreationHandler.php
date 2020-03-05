@@ -495,6 +495,11 @@ class ilECSCourseCreationHandler
         $course_obj->setSubscriptionMaxMembers((int) $group->maxParticipants);
         $course_obj->create();
         
+        // Set parallel group to online and grouped-by-type view 
+        $course_obj->setOfflineStatus(false);
+        $course_obj->setViewMode(5);
+        $course_obj->update();
+
         $this->createCourseReference($course_obj, ilObject::_lookupObjId($parent_ref));
         $this->setImported($course->lectureID, $course_obj, $a_content_id, $group->id);
         $this->setObjectCreated(true);
@@ -657,6 +662,12 @@ class ilECSCourseCreationHandler
         $GLOBALS['ilLog']->write(__METHOD__ . ': Creating new course instance from ecs : ' . $title);
         $course_obj->setTitle($title);
         $course_obj->create();
+
+        // Set course to online and grouped-by-type view 
+        $course_obj->setOfflineStatus(false);
+        $course_obj->setViewMode(5);
+        $course_obj->update();
+
         return $course_obj;
     }
     

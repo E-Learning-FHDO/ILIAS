@@ -1052,9 +1052,10 @@ class ilInitialisation
 			self::initBackgroundTasks($GLOBALS['DIC']);
 
 			if(ilContext::hasHTML())
-			{													
-				include_once('./Services/WebServices/ECS/classes/class.ilECSTaskScheduler.php');
-				ilECSTaskScheduler::start();					
+			{	
+				// Disable triggering ECS tasks on page load								
+				//include_once('./Services/WebServices/ECS/classes/class.ilECSTaskScheduler.php');
+				//ilECSTaskScheduler::start();					
 				
 				self::initHTML();		
 			}							

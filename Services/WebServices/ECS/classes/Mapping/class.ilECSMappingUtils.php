@@ -171,7 +171,7 @@ class ilECSMappingUtils
             IL_CRS_MEMBER => array(
                 'role' => IL_CRS_MEMBER,
                 'lang' => 'il_crs_member',
-                'create' => false,
+                'create' => true,
                 'required' => true,
                 'type' => 'crs'),
             IL_GRP_ADMIN => array(
@@ -183,7 +183,7 @@ class ilECSMappingUtils
             IL_GRP_MEMBER => array(
                 'role' => IL_GRP_MEMBER,
                 'lang' => 'il_grp_member',
-                'create' => false,
+                'create' => true,
                 'required' => false,
                 'type' => 'grp')
         );
