@@ -23,3 +23,6 @@
 	path = Customizing/global/plugins/Services/Repository/RepositoryObject/ViMP
 	url = https://git.ilias.fh-dortmund.de/ilias-public/vimp-plugin.git
 	branch = custom-icon
+[submodule "Customizing/global/plugins/Services/COPage/PageComponent/VimpPageComponent"]
+	path = Customizing/global/plugins/Services/COPage/PageComponent/VimpPageComponent
+	url = https://git.ilias.fh-dortmund.de/ilias-public/VimpPageComponent.git
