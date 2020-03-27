@@ -26,3 +26,4 @@
 [submodule "Customizing/global/plugins/Services/COPage/PageComponent/VimpPageComponent"]
 	path = Customizing/global/plugins/Services/COPage/PageComponent/VimpPageComponent
 	url = https://git.ilias.fh-dortmund.de/ilias-public/VimpPageComponent.git
+	branch = fhdo
