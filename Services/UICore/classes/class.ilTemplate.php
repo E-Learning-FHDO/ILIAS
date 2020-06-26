@@ -199,7 +199,7 @@ class ilTemplate extends HTML_Template_ITX
 		
         // we don't need it any more
         $this->template = '';
-        
+
     } // end func init
 	
 	/*

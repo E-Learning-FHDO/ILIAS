@@ -470,7 +470,7 @@ class ilAccountRegistrationGUI
                 $form_valid = false;
             }
         }
-<<<<<<< HEAD
+
         // end-patch code_username;
 
         // JAN DEBUG
