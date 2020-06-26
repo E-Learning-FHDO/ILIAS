@@ -446,6 +446,7 @@ class ilAccountRegistrationGUI
             // validate username
             $login_obj = $this->form->getItemByPostVar('username');
             $login = $this->form->getInput("username");
+            $captcha = $this->form->getItemByPostVar("captcha_code");
             if (!ilUtil::isLogin($login))
             {
                 $login_obj->setAlert($lng->txt("login_invalid"));
@@ -453,17 +454,23 @@ class ilAccountRegistrationGUI
             }
             else if (ilObjUser::_loginExists($login))
             {
-                $login_obj->setAlert($lng->txt("login_exists"));
+                if(!empty($captcha) && empty($captcha->getAlert()) || empty($captcha)) {
+                    $login_obj->setAlert($lng->txt("login_exists"));
+                }
                 $form_valid = false;
             }
             else if ((int)$ilSetting->get('allow_change_loginname') &&
                 (int)$ilSetting->get('reuse_of_loginnames') == 0 &&
                 ilObjUser::_doesLoginnameExistInHistory($login))
             {
-                $login_obj->setAlert($lng->txt('login_exists'));
+                if(!empty($captcha) && empty($captcha->getAlert()) || empty($captcha)) {
+                    $login_obj->setAlert($lng->txt("login_exists"));
+                }
+
                 $form_valid = false;
             }
         }
+<<<<<<< HEAD
         // end-patch code_username;
 
         // JAN DEBUG

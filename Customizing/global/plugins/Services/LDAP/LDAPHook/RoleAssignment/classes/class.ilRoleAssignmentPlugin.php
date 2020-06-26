@@ -37,7 +37,7 @@ class ilRoleAssignmentPlugin extends ilLDAPPlugin implements ilLDAPRoleAssignmen
 	
 	private static $assignments = null;
     
-    private static $ldap_debug = 0;
+    private static $ldap_debug = 1;
 	
 	/**
 	 * Get name of plugin.
