@@ -787,17 +787,15 @@ class ilCalendarBlockGUI extends ilBlockGUI
 		$this->mode = ilCalendarCategories::MODE_REPOSITORY;
 
 		$cats = \ilCalendarCategories::_getInstance();
-
 		if ($this->getForceMonthView()) {
-			//if(!isset($_GET['bkid']))	            // @todo: why not
-			//{	        }
-			if ($this->getForceMonthView()) {	// in full container calendar presentation (allows selection of other calendars)	        elseif (!$cats->getMode()) {
-				//ilCalendarCategories::_getInstance()->initialize(ilCalendarCategories::MODE_REPOSITORY, (int)$_GET['ref_id'], true);	            $cats->initialize(
-			} else {							// side block in container content view -> focus on container events only	                \ilCalendarCategories::MODE_REPOSITORY_CONTAINER_ONLY,
-				ilCalendarCategories::_getInstance()->initialize(ilCalendarCategories::MODE_REPOSITORY_CONTAINER_ONLY, (int) $_GET['ref_id'], true);	                (int) $_GET['ref_id'],
-                true
-            );
-			}
+			// @todo: why not
+		}
+		elseif (!$cats->getMode()) {
+			$cats->initialize(
+				\ilCalendarCategories::MODE_REPOSITORY_CONTAINER_ONLY,
+				(int) $_GET['ref_id'],
+				true
+			);
 		}
 
 	}
