@@ -270,6 +270,7 @@ class ilCalendarBlockGUI extends ilBlockGUI
 				break;
 
 			case "ilcalendarappointmentpresentationgui":
+                $this->initCategories();
 				include_once('./Services/Calendar/classes/class.ilCalendarAppointmentPresentationGUI.php');
 				$presentation = ilCalendarAppointmentPresentationGUI::_getInstance($this->seed, $this->appointment);
 				$ilCtrl->forwardCommand($presentation);
@@ -785,25 +786,20 @@ class ilCalendarBlockGUI extends ilBlockGUI
 	{
 		$this->mode = ilCalendarCategories::MODE_REPOSITORY;
 
-		include_once('./Services/Calendar/classes/class.ilCalendarCategories.php');
+		$cats = \ilCalendarCategories::_getInstance();
 
-		//if(!isset($_GET['bkid']))
-		//{
-		if ($this->getForceMonthView())	// in full container calendar presentation (allows selection of other calendars)
-		{
-			//ilCalendarCategories::_getInstance()->initialize(ilCalendarCategories::MODE_REPOSITORY, (int)$_GET['ref_id'], true);
+		if ($this->getForceMonthView()) {
+			//if(!isset($_GET['bkid']))	            // @todo: why not
+			//{	        }
+			if ($this->getForceMonthView()) {	// in full container calendar presentation (allows selection of other calendars)	        elseif (!$cats->getMode()) {
+				//ilCalendarCategories::_getInstance()->initialize(ilCalendarCategories::MODE_REPOSITORY, (int)$_GET['ref_id'], true);	            $cats->initialize(
+			} else {							// side block in container content view -> focus on container events only	                \ilCalendarCategories::MODE_REPOSITORY_CONTAINER_ONLY,
+				ilCalendarCategories::_getInstance()->initialize(ilCalendarCategories::MODE_REPOSITORY_CONTAINER_ONLY, (int) $_GET['ref_id'], true);	                (int) $_GET['ref_id'],
+                true
+            );
+			}
 		}
-		else							// side block in container content view -> focus on container events only
-		{
-			ilCalendarCategories::_getInstance()->initialize(ilCalendarCategories::MODE_REPOSITORY_CONTAINER_ONLY, (int)$_GET['ref_id'], true);
-		}
-		//}
-		//else
-		//{
-		//	// display consultation hours only (in course/group)
-		//	ilCalendarCategories::_getInstance()->setCHUserId((int) $_GET['bkid']);
-		//	ilCalendarCategories::_getInstance()->initialize(ilCalendarCategories::MODE_CONSULTATION,(int) $_GET['ref_id'],true);
-		//}
+
 	}
 	
 	/**
@@ -1143,6 +1139,7 @@ class ilCalendarBlockGUI extends ilBlockGUI
 		}
 		exit();
 	}
+
 }
 
 ?>
