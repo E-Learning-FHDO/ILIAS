@@ -177,6 +177,8 @@ rep_robj_xvmp#:#rep_robj_xvmp_root_create_xvmp#:#Create Video
 rep_robj_xvmp#:#rep_robj_xvmp_xvmp_visible#:#Visible: Video is visible
 rep_robj_xvmp#:#rep_robj_xvmp_xvmp_write#:#Edit Settings: User can edit content and settings of Video object
 rep_robj_xvmp#:#rep_robj_xvmp_xvmp_delete#:#Delete: User can delete Video object
+rep_robj_xvmp#:#rep_robj_xvmp_xvmp_edit_learning_progress#:#Edit Learning Progress
+rep_robj_xvmp#:#rep_robj_xvmp_xvmp_view_learning_progress#:#Show Learning Progress
 common#:#rep_robj_xvmp_obj_xvmp#:#Video
 common#:#rep_robj_xvmp_objs_xvmp#:#Videos
 common#:#rep_robj_xvmp_rbac_create_xvmp#:#Create Video
