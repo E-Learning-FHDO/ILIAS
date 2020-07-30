@@ -960,6 +960,9 @@ class ilTemplate extends HTML_Template_ITX
         $ftpl->setVariable("ILIAS_VERSION", $ilSetting->get("ilias_version").$php.' '.$fhdoServerId);
         $ftpl->setVariable("SYSTEM_ZEIT", $lng->txt("system_zeit"));
        	$ftpl->setVariable("SYSTEM_ZEIT_ANZEIGEN", date("H:i:s"));
+		//$ftpl->setVariable("ACTIVE_USER_SESSIONS", $lng->txt("active_user_sessions"));
+		$ftpl->setVariable("ACTIVE_USER_SESSIONS", $lng->txt("active_user_sessions"));
+       	$ftpl->setVariable("ACTIVE_USER_SESSIONS_COUNT", ilUserUtil::countActiveSessions());
         // END: JAN
 
         	$link_items = array();

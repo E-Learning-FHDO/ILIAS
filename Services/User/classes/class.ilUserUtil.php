@@ -591,5 +591,22 @@ class ilUserUtil
     }
     // end-patch code_username / ldap_username
 
+	// JAN
+	// begin patch count user sessions
+	/**
+	 * Count current active user sessions
+	 *
+	 * return int $u_count;
+	 */
+	public static function countActiveSessions()
+	{
+		global $ilDB;
+
+		$r = $ilDB->query('SELECT count(session_id) FROM `usr_session` GROUP by user_id');
+
+		$u_count = $r->numRows();
+
+		return $u_count;
+	}
 }
 ?>
